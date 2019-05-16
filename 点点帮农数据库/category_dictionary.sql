@@ -206,7 +206,7 @@ INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s
 INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (286, 1, 16, 163, 16301, '调味香料', '花椒、胡椒、八椒、桂皮、桂花、丁香、豆蔻、小茴香、咖喱、枯茗子、蒿子、杜松果、其他调味香料');
 INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (287, 1, 16, 163, 16302, '香味料', '香子兰、香茅草、薄菏油、留兰香、啤酒花、番红花、姜黄、麝香草、月桂叶、其他香味料');
 INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (288, 1, 16, 164, 16400, '茶叶种植', '茶叶种植');
-INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (289, 1, 16, 164, 106401, '#VALUE!', '用于生产红茶、绿茶、白茶、黄茶、青茶（铁观音、乌龙茶、其他青茶）、黑茶（普洱茶、其他黑茶）以及其他茶叶的各种茶树种植');
+INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (289, 1, 16, 164, 16401, '茶树', '用于生产红茶、绿茶、白茶、黄茶、青茶（铁观音、乌龙茶、其他青茶）、黑茶（普洱茶、其他黑茶）以及其他茶叶的各种茶树种植');
 INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (290, 1, 16, 169, 16900, '其他饮料作物种植', '其他饮料作物种植');
 INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (291, 1, 16, 169, 16901, '其他饮料原料', '可可豆、咖啡豆、其他未列明饮料原料');
 INSERT INTO `category_dictionary` (`id`, `category_l`, `category_m`, `category_s`, `category_c`, `category_name`, `explanation`) VALUES (292, 1, 17, 170, 17000, '中药材种植', '中药材种植');
