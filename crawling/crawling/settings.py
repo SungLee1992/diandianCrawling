@@ -14,6 +14,8 @@ BOT_NAME = 'crawling'
 SPIDER_MODULES = ['crawling.spiders']
 NEWSPIDER_MODULE = 'crawling.spiders'
 
+LOG_LEVEL = "WARNING"
+LOG_FILE = "./log.log"  #保存到本地，控制台则不输出
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'crawling (+http://www.yourdomain.com)'
@@ -63,10 +65,15 @@ ROBOTSTXT_OBEY = True
 #}
 
 # Configure item pipelines
-# See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'crawling.pipelines.CrawlingPipeline': 300,
-#}
+#See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+
+#开启pipelines的设置
+ITEM_PIPELINES = {
+   #'crawling.pipelines.CrawlingPipeline_1': 300,      #值表示距离引擎的远近
+   #'crawling.pipelines.CrawlingPipeline_2': 301,      #值表示距离引擎的远近,值越小，表示距离pipeline的引擎跃进
+   #'crawling.pipelines.Itcast1Pipeline': 300,
+   'crawling.pipelines.CrawlingPipeline_SXNYNCT':300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
