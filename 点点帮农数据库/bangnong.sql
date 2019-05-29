@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : yxh
-Source Server Version : 50625
+Source Server         : localhost_3306
+Source Server Version : 50723
 Source Host           : localhost:3306
 Source Database       : bangnong
 
 Target Server Type    : MYSQL
-Target Server Version : 50625
+Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2019-05-23 17:45:25
+Date: 2019-05-29 17:43:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -552,3 +552,222 @@ INSERT INTO `category_dictionary` VALUES ('596', '5', '54', '549', '54902', '渔
 INSERT INTO `category_dictionary` VALUES ('597', '5', '54', '549', '54903', '智能农业管理（部分）', '利用大数据、物联网、互联网等现代信息技术对种渔业养殖生产经营进行管');
 INSERT INTO `category_dictionary` VALUES ('598', '5', '54', '549', '54904', '其他渔业服务', '其他渔业服务');
 INSERT INTO `category_dictionary` VALUES ('599', '5', '54', '549', '54905', '渔业加工废弃物综合利用。', '渔业加工废弃物综合利');
+
+-- ----------------------------
+-- Table structure for `price`
+-- ----------------------------
+DROP TABLE IF EXISTS `price`;
+CREATE TABLE `price` (
+  `price_id` int(11) NOT NULL,
+  `pro_name` varchar(50) DEFAULT NULL COMMENT '货物名称',
+  `price` double(50,0) DEFAULT NULL COMMENT '成交价格',
+  `unit` varchar(50) DEFAULT NULL COMMENT '单位',
+  `address` varchar(500) DEFAULT NULL COMMENT '成交地点',
+  `time` varchar(50) DEFAULT NULL COMMENT '成交时间',
+  `high_price` double(50,0) DEFAULT NULL COMMENT '最高价',
+  `low_price` double(50,0) DEFAULT NULL COMMENT '最低价',
+  `avg_price` double(50,0) DEFAULT NULL COMMENT '平均价格',
+  `price_from` varchar(500) DEFAULT NULL COMMENT '价格信息来源',
+  PRIMARY KEY (`price_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of price
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `purchase`
+-- ----------------------------
+DROP TABLE IF EXISTS `purchase`;
+CREATE TABLE `purchase` (
+  `pur_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pro_name` varchar(500) NOT NULL COMMENT '产品名称',
+  `category_id` int(11) DEFAULT NULL,
+  `area_require` text NOT NULL COMMENT '产地要求',
+  `start_time` varchar(50) NOT NULL COMMENT '开始日期',
+  `end_time` varchar(50) NOT NULL COMMENT '结束日期',
+  `pur_num` int(11) NOT NULL COMMENT '采购数量',
+  `pur_unit` varchar(50) NOT NULL COMMENT '单位',
+  `pur_require` varchar(500) NOT NULL COMMENT '采购描述，采购要求，服务要求',
+  `other_require` varchar(500) DEFAULT NULL COMMENT '其他需求',
+  `pur_status` int(2) NOT NULL DEFAULT '1' COMMENT '状态 1正在采购 0已过期 2已完成',
+  `pub_title` varchar(500) DEFAULT NULL COMMENT '发布标题',
+  `pub_address` varchar(500) DEFAULT NULL COMMENT '发布地区',
+  `pub_time` varchar(50) DEFAULT NULL COMMENT '发布时间',
+  `pur_user` varchar(50) DEFAULT NULL COMMENT '采购联系人',
+  `pur_phone` varchar(50) DEFAULT NULL COMMENT '联系电话',
+  `pur_email` varchar(50) DEFAULT NULL COMMENT '联系人邮箱',
+  `pur_address` varchar(500) NOT NULL COMMENT '交货地址',
+  `pur_from` varchar(500) DEFAULT NULL COMMENT '供应信息来源',
+  `user_token` varchar(32) NOT NULL COMMENT '发布的用户',
+  PRIMARY KEY (`pur_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='产品采购表';
+
+-- ----------------------------
+-- Records of purchase
+-- ----------------------------
+INSERT INTO `purchase` VALUES ('5', '芹菜', null, '', '2019.08.22', '2019.09.19', '5', '吨', '宁夏回族自治区', null, '2', null, null, null, null, null, null, '西安朱雀农贸市场', null, '06AgA8xpQsiKtmwKtcYP91ld3gO4rMhn');
+INSERT INTO `purchase` VALUES ('6', '核桃', null, '', '2018.11.30', '2019.02.28', '200', '吨', '内蒙古自治区', null, '2', null, null, null, null, null, null, '交货地址', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('11', '橘子', null, '', '2018.11.28', '2019.03.01', '1000', '吨', '-', null, '2', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('12', '突尼斯软籽石榴苗', null, '', '2018.12.03', '2019.04.08', '1000', '株', '-', null, '2', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('13', '海棠实生苗', null, '', '2018.12.03', '2019.04.09', '200', '株', '-', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('14', 'M26矮化苗', null, '', '2018.12.03', '2019.04.10', '200', '株', '-', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('15', '矮化砧', null, '', '2018.12.03', '2019.04.11', '200', '株', '-', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('16', '中药材', null, '', '2018.12.03', '2019.04.12', '100000', '斤', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('17', '柿子树苗', null, '', '2018.12.03', '2019.06.05', '1000', '株', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('18', '甜山楂树苗', null, '', '2018.12.03', '2019.06.06', '300', '株', '-', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('19', '玉米大豆', null, '', '2018.12.03', '2019.06.07', '20000', '株', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('20', '纯种小尾寒羊', null, '', '2018.12.03', '2019.06.08', '30', '斤', '全国', null, '1', null, null, null, null, null, null, '陕西汉中洋县', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('21', '猪苓种', null, '', '2018.12.03', '2019.06.09', '1000', '千克', '-', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('22', '大黄专用肥', null, '', '2018.12.03', '2019.06.10', '2000', '千克', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('23', '红薯', null, '', '2018.12.03', '2019.02.19', '1000', '吨', '-', null, '0', null, null, null, null, null, null, '黄瓤红薯/ 紫瓤红薯', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('24', '新鲜拐枣', null, '', '2018.12.03', '2019.02.20', '10000', '斤', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('25', '桔梗种', null, '', '2018.12.03', '2019.02.21', '100', '斤', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('26', '两糯1号高粱', null, '', '2018.12.03', '2019.02.22', '50000', '斤', '-', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('27', '新鲜蔬菜', null, '', '2018.12.03', '2019.02.23', '69', '吨', '-', null, '1', null, null, null, null, null, null, '', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('28', '红薯淀粉', null, '', '2018.12.03', '2019.02.24', '3000', '吨', '全国', null, '1', null, null, null, null, null, null, '-', null, 'system_publisher');
+INSERT INTO `purchase` VALUES ('29', '有机肥、农家肥', null, '', '2018.12.10', '2019.03.31', '50', '吨', '甘肃省,陕西省,青海省', null, '1', null, null, null, null, null, null, '天水市麦积区元龙镇', null, 'VNax3xczx_IGzQDD66T0HLNcMPKWXRw3');
+INSERT INTO `purchase` VALUES ('30', '临洮珍好', null, '', '1970.01.01', '1970.01.01', '10000', '斤', '甘肃省', null, '0', null, null, null, null, null, null, '临洮县峡口镇大嘴张家坪社17号', null, 'sqNNTpSGKFa7x7jdRe4nm3xpJGawiNUG');
+INSERT INTO `purchase` VALUES ('31', '苹果�� 套袋', null, '', '2019.01.09', '2019.03.09', '100', '克', '甘肃省,湖北省', null, '1', null, null, null, null, null, null, '甘肃庆阳市正宁县榆林子艳阳合作社', null, '7WgGyt3v35GVpPTa7vKm8_00a0_Lz3UY');
+INSERT INTO `purchase` VALUES ('32', '党参', null, '', '2019.01.15', '2019.01.15', '100', '公斤', '', null, '1', null, null, null, null, null, null, '', null, 'AvOuznMwyQv82jBXBQoPAMgZs5MrHGx0');
+INSERT INTO `purchase` VALUES ('33', '杜仲皮', null, '', '2019.01.29', '2019.12.28', '150', '吨', '陕西省,四川省,重庆市,甘肃省', null, '1', null, null, null, null, null, null, '', null, '_EFB5_9Lq2m7TDNVmbgLSVWE_i1A94fs');
+INSERT INTO `purchase` VALUES ('34', '糯玉米', null, '', '1970.01.01', '1970.01.01', '100', '吨', '辽宁省,吉林省,黑龙江省,海南省', null, '1', null, null, null, null, null, null, '安徽省合肥市瑶海区周谷堆市场，联系方式：18991898023', null, 'harOBiooE9MDDX7nXC2ONwGotBewokLx');
+
+-- ----------------------------
+-- Table structure for `supply`
+-- ----------------------------
+DROP TABLE IF EXISTS `supply`;
+CREATE TABLE `supply` (
+  `sup_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pro_name` varchar(500) DEFAULT NULL COMMENT '产品名称',
+  `category_id` int(11) DEFAULT NULL,
+  `sup_variety` varchar(500) DEFAULT NULL COMMENT '产品品种',
+  `start_time` varchar(30) DEFAULT NULL COMMENT '开始日期',
+  `end_time` varchar(30) DEFAULT NULL COMMENT '结束日期',
+  `sup_num` int(11) DEFAULT NULL COMMENT '供应数量',
+  `sup_unit` varchar(10) DEFAULT NULL COMMENT '单位',
+  `sup_pics` text COMMENT '图片',
+  `sup_type` int(2) DEFAULT NULL COMMENT '供应类型 1现货 2预售',
+  `sup_status` int(2) DEFAULT '1' COMMENT '状态 1正常 0已过期 2已结束',
+  `pub_time` varchar(50) DEFAULT NULL COMMENT '发布时间 时间戳',
+  `pub_address` varchar(500) DEFAULT NULL COMMENT '发布地区',
+  `pub_title` varchar(500) DEFAULT NULL COMMENT '发布标题',
+  `sup_user` varchar(50) DEFAULT NULL COMMENT '联系人',
+  `sup_phone` varchar(50) DEFAULT NULL COMMENT '联系电话',
+  `sup_email` varchar(200) DEFAULT NULL,
+  `sup_address` varchar(200) DEFAULT NULL COMMENT '供应地址',
+  `sup_description` varchar(500) DEFAULT NULL COMMENT '供应描述',
+  `sup_from` varchar(500) DEFAULT NULL COMMENT '信息来源',
+  `user_token` varchar(32) DEFAULT NULL COMMENT '发布的用户',
+  PRIMARY KEY (`sup_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 COMMENT='产品供应表';
+
+-- ----------------------------
+-- Records of supply
+-- ----------------------------
+INSERT INTO `supply` VALUES ('48', '红薯（山芋）粉、山芋粉丝、粉条', null, '山芋产品', '2018.12.02', '2019.02.08', '4000', '斤', 'https://card.weixin96114.com/upload/201812/2018120204090040.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('49', '红薯苗', null, '龙薯9', '2018.12.02', '2019.02.08', '800', '斤', 'https://card.weixin96114.com/upload/201812/2018120208040250.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('50', '马铃薯脱毒种薯', null, '马铃薯', '2018.12.02', '2019.02.16', '8900', '斤', 'https://card.weixin96114.com/upload/201812/2018120207090300.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('51', '葡萄树', null, '葡萄树', '2018.12.02', '2019.02.05', '3000', '株', 'https://card.weixin96114.com/upload/201812/2018120111400280.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('52', '蜜薯', null, '烟薯25', '2018.12.02', '2019.02.08', '20000', '斤', 'https://card.weixin96114.com/upload/201812/2018120110240011.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('53', '红富士苹果', null, '红富士苹果', '2018.12.02', '2019.02.08', '60000', '斤', 'https://card.weixin96114.com/upload/201812/2018120101030081.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('54', '生态米', null, '五常稻花香7号', '2018.12.02', '2019.02.08', '10000', '斤', 'https://card.weixin96114.com/upload/201811/2018113008190401.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('55', '富硒红薯', null, '普薯32', '2018.12.02', '2019.02.09', '3000', '斤', 'https://card.weixin96114.com/upload/201811/2018113007180133.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('56', '香芋', null, '粉芋', '2018.12.02', '2019.02.09', '20000', '斤', 'https://card.weixin96114.com/upload/201811/2018113005270360.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('57', '富平柿饼', null, '富平柿饼', '2018.12.02', '2019.02.08', '7000', '斤', 'https://card.weixin96114.com/upload/201811/2018112910080316.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('58', '红薯', null, '秦薯四号', '2018.12.02', '2019.02.08', '3000', '斤', 'https://card.weixin96114.com/upload/201811/2018112902010152.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('59', '薄皮核桃', null, '薄皮核桃', '2018.12.02', '2019.02.18', '3000', '斤', 'https://card.weixin96114.com/upload/201811/2018112805030031.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('60', '自育大樱桃苗', null, '大樱桃苗', '2018.12.02', '2019.02.08', '3000', '株', 'https://card.weixin96114.com/upload/201811/2018112804410054.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('61', '子母河红枣', null, '灰枣', '2018.12.02', '2019.02.08', '60000', '斤', 'https://card.weixin96114.com/upload/201811/2018112801270067.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('62', '红南瓜', null, '红南瓜', '2018.12.02', '2019.02.08', '60000', '斤', 'https://card.weixin96114.com/upload/201811/2018112703150030.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('63', '衢州碰柑', null, '碰柑', '2018.12.02', '2019.02.26', '40000', '斤', 'https://card.weixin96114.com/upload/201811/2018112709320485.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('64', '杏李种苗', null, '美国杏李系列苗木', '2018.12.02', '2019.02.09', '6000', '株', 'https://card.weixin96114.com/upload/201811/2018112711230460.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('65', '红豆杉', null, '红豆杉', '2018.12.02', '2019.02.10', '90000', '株', 'https://card.weixin96114.com/upload/201811/2018112711000330.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('66', '黄花菜', null, '黄花菜', '2018.12.02', '2019.02.11', '8000', '斤', 'https://card.weixin96114.com/upload/201811/2018112708060170.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('67', '黄盖花椒苗', null, '黄盖花椒苗', '2018.12.02', '2019.02.12', '1000', '株', 'https://card.weixin96114.com/upload/201811/2018112707080341.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('68', '沙糖桔', null, '沙糖桔', '2018.12.02', '2019.02.13', '60000', '斤', 'https://card.weixin96114.com/upload/201811/2018112705350261.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('69', '板蓝根', null, '板蓝根', '2018.12.02', '2019.02.04', '500', '斤', 'https://card.weixin96114.com/upload/201811/2018112610330330.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('70', '蒲公英', null, '蒲公英', '2018.12.02', '2019.02.15', '900', '斤', 'https://card.weixin96114.com/upload/201811/2018112610300382.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('71', '葵花籽', null, '363', '2018.12.02', '2019.02.16', '3500', '斤', 'https://card.weixin96114.com/upload/201811/2018112609060590.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('72', '甜宝草莓', null, '甜宝草莓', '2018.12.02', '2019.02.17', '5000', '斤', 'https://card.weixin96114.com/upload/201811/2018112608510471.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('73', '红富士苹果', null, '红富士苹果', '2018.12.02', '2019.01.06', '9000', '斤', 'https://card.weixin96114.com/upload/201811/2018112601280445.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('74', '藏红花', null, '藏红花', '2018.12.02', '2019.01.28', '4500', '斤', 'https://card.weixin96114.com/upload/201811/2018112510130343.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('75', '大闸蟹', null, '大闸蟹', '2018.12.02', '2019.01.08', '8000', '斤', 'https://card.weixin96114.com/upload/201811/2018112207130470.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('76', '香菇', null, '香菇', '2018.12.02', '2019.01.09', '2000', '斤', 'https://card.weixin96114.com/upload/201811/2018112410080531.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('77', '肉牛犊', null, '西门塔尔牛', '2018.12.02', '2019.01.10', '500', '吨', 'https://card.weixin96114.com/upload/201811/2018112207070180.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('78', '果园放养鸡', null, '鸡', '2018.12.02', '2019.01.12', '300', '斤', 'https://card.weixin96114.com/upload/201811/2018112205290310.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('79', '核桃苗', null, '核桃苗', '2018.12.02', '2019.01.13', '4500', '株', 'https://card.weixin96114.com/upload/201811/2018112010070411.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('80', '金枝槐', null, '金枝槐', '2018.12.02', '2019.01.14', '3000', '株', 'https://card.weixin96114.com/upload/201811/2018112107030030.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('81', '太阳李', null, '太阳李', '2018.12.02', '2019.01.04', '2000', '株', 'https://card.weixin96114.com/upload/201811/2018112106460100.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('82', '猴头茹', null, '猴头茹', '2018.12.02', '2019.01.16', '6000', '斤', 'https://card.weixin96114.com/upload/201811/2018112107290340.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('83', '纯天然土蜂蜜', null, '土蜂蜜', '2018.12.02', '2019.01.17', '700', '斤', 'https://card.weixin96114.com/upload/201811/2018111908340113.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('84', '黄芪', null, '黄芪', '2018.12.02', '2019.01.18', '1200', '斤', 'https://card.weixin96114.com/upload/201811/2018111812080030.jpg', '1', '0', '1543760039', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('85', '漆树坝想乡香腊肉', null, '腌腊肉制品', '2018.11.20', '2019.08.19', '200000', '斤', 'http://static.hnjiajianmy.com/20181209000537915.jpg,http://static.hnjiajianmy.com/20181209000540445.jpg,http://static.hnjiajianmy.com/20181209000543714.jpeg,http://static.hnjiajianmy.com/20181209000544303.jpeg,http://static.hnjiajianmy.com/20181209000544307.jpeg,http://static.hnjiajianmy.com/20181209000545993.jpg', '1', '1', '1544285162', null, null, null, null, null, null, null, null, 'CdSb8T7OtFblh_mkNSJVCCzoYP5jYjTY');
+INSERT INTO `supply` VALUES ('86', '优产区高山红富士苹果', null, '红富士苹果', '2018.11.09', '2019.05.20', '100', '吨', 'http://static.hnjiajianmy.com/20181209235958663.jpg,http://static.hnjiajianmy.com/20181209235959317.jpg,http://static.hnjiajianmy.com/20181209235959862.jpg', '1', '1', '1544371260', null, null, null, null, null, null, null, null, '1ZeS1AWR51JXB6enicPUeiqLmX7Yltbl');
+INSERT INTO `supply` VALUES ('87', '枸杞', null, '宁杞7号', '2018.07.10', '2018.01.08', '5000', '斤', 'http://static.hnjiajianmy.com/20181210074348735.jpg,http://static.hnjiajianmy.com/20181210074348510.jpg,http://static.hnjiajianmy.com/20181210074349453.jpg,http://static.hnjiajianmy.com/20181210074349271.jpg', '2', '0', '1544399038', null, null, null, null, null, null, null, null, 'jP8q8QiMBV8JECplzGgFdb2KvOTN0df8');
+INSERT INTO `supply` VALUES ('88', '花椒', null, '伏椒、秋椒', '2018.12.10', '2019.03.01', '10000', '斤', 'http://static.hnjiajianmy.com/20181210092602715.jpg,http://static.hnjiajianmy.com/20181210092603840.jpg,http://static.hnjiajianmy.com/20181210092603976.jpg,http://static.hnjiajianmy.com/20181210092604413.jpg,http://static.hnjiajianmy.com/20181210092604685.jpg,http://static.hnjiajianmy.com/20181210092605216.jpg', '1', '0', '1544405225', null, null, null, null, null, null, null, null, 'VNax3xczx_IGzQDD66T0HLNcMPKWXRw3');
+INSERT INTO `supply` VALUES ('89', '马铃薯种薯', null, '陇薯七号原种及一级种', '2018.10.09', '2019.04.20', '800', '吨', 'http://static.hnjiajianmy.com/20181210183507821.jpg,http://static.hnjiajianmy.com/20181210183508563.jpg,http://static.hnjiajianmy.com/20181210183508672.jpg,http://static.hnjiajianmy.com/20181210183509626.jpg,http://static.hnjiajianmy.com/20181210183510785.jpg,http://static.hnjiajianmy.com/20181210183510119.jpg', '1', '1', '1544438129', null, null, null, null, null, null, null, null, 'SgyBKmEKyJTpeBc0AO_s65sCjjx720Hv');
+INSERT INTO `supply` VALUES ('90', '枸杞', null, '宁杞七号', '2018.07.10', '2019.06.10', '5000', '斤', 'http://static.hnjiajianmy.com/20181210195222387.jpg,http://static.hnjiajianmy.com/20181210195223333.jpg,http://static.hnjiajianmy.com/20181210195223865.jpg,http://static.hnjiajianmy.com/20181210195225235.jpg,http://static.hnjiajianmy.com/20181210195227723.jpg,http://static.hnjiajianmy.com/20181210195228913.jpg', '1', '1', '1544442752', null, null, null, null, null, null, null, null, 'jP8q8QiMBV8JECplzGgFdb2KvOTN0df8');
+INSERT INTO `supply` VALUES ('91', '苹果', null, '红富士', '2018.10.01', '2019.07.01', '500', '斤', 'http://static.hnjiajianmy.com/20181210205204386.jpg,http://static.hnjiajianmy.com/20181210205205737.jpg,http://static.hnjiajianmy.com/20181210205206258.jpg', '1', '1', '1544446341', null, null, null, null, null, null, null, null, 'g0mXnzP9yYJLm_6E_H2WZ5huR06YUZW4');
+INSERT INTO `supply` VALUES ('92', '白芨苗', null, '白芨苗', '2018.03.10', '2020.12.11', '10000000', '株', 'http://static.hnjiajianmy.com/20181211123637278.jpg,http://static.hnjiajianmy.com/20181211123637549.jpg,http://static.hnjiajianmy.com/20181211123638428.jpg,http://static.hnjiajianmy.com/20181211123638680.jpg,http://static.hnjiajianmy.com/20181211123639384.jpg,http://static.hnjiajianmy.com/20181211123639277.jpg', '1', '1', '1544503033', null, null, null, null, null, null, null, null, '4N7rSjnsDmYodj5xCSk1Fg0be8XIvquu');
+INSERT INTO `supply` VALUES ('93', '秦红宝洋葱种子', null, '秦红宝早熟', '2018.07.27', '2019.04.01', '500', '斤', 'http://static.hnjiajianmy.com/20181216100327411.jpg,http://static.hnjiajianmy.com/20181216100443335.jpg,http://static.hnjiajianmy.com/20181216100444899.jpg,http://static.hnjiajianmy.com/20181216100445412.jpg,http://static.hnjiajianmy.com/20181216100446253.jpg,http://static.hnjiajianmy.com/20181216100446607.jpg', '1', '1', '1544925895', null, null, null, null, null, null, null, null, '_upROvClv2VfQ4Zk4kMFeYZ7wfMtDDqc');
+INSERT INTO `supply` VALUES ('94', '柿子', null, '杮饼', '2018.12.16', '2019.02.28', '5000', '斤', 'http://static.hnjiajianmy.com/20181216131805150.jpg,http://static.hnjiajianmy.com/20181216131807125.jpg,http://static.hnjiajianmy.com/20181216131936584.jpg,http://static.hnjiajianmy.com/20181216131949741.jpg', '1', '0', '1544938014', null, null, null, null, null, null, null, null, 'x_0bMYlgXVvCTl9L9mWMOiSvMEZJjYur');
+INSERT INTO `supply` VALUES ('96', '草莓', null, '章姬', '2018.12.16', '2019.05.12', '10000', '斤', 'http://static.hnjiajianmy.com/20181216133004586.jpg,http://static.hnjiajianmy.com/20181216133005711.jpg,http://static.hnjiajianmy.com/20181216133006685.jpg,http://static.hnjiajianmy.com/20181216133006635.jpg,http://static.hnjiajianmy.com/20181216133007139.jpg,http://static.hnjiajianmy.com/20181216133008644.jpg', '1', '1', '1544938221', null, null, null, null, null, null, null, null, 'x_0bMYlgXVvCTl9L9mWMOiSvMEZJjYur');
+INSERT INTO `supply` VALUES ('97', '火龙果', null, '红、白、紫、桂红', '2018.12.16', '2019.02.26', '5000', '斤', 'http://static.hnjiajianmy.com/20181216134030449.jpg,http://static.hnjiajianmy.com/20181216134031148.jpg,http://static.hnjiajianmy.com/20181216134032776.jpg,http://static.hnjiajianmy.com/20181216134033480.jpg,http://static.hnjiajianmy.com/20181216134034763.jpg', '1', '0', '1544938855', null, null, null, null, null, null, null, null, 'x_0bMYlgXVvCTl9L9mWMOiSvMEZJjYur');
+INSERT INTO `supply` VALUES ('98', '老秦家石榴', null, '净皮、白皮、天红旦', '2019.09.15', '2019.10.25', '20000', '斤', 'http://static.hnjiajianmy.com/20181216161302486.jpg,http://static.hnjiajianmy.com/20181216161304227.jpg,http://static.hnjiajianmy.com/20181216161306482.jpg,http://static.hnjiajianmy.com/20181216161307436.jpg,http://static.hnjiajianmy.com/20181216161309577.jpg,http://static.hnjiajianmy.com/20181216161310885.jpg', '2', '1', '1544948003', null, null, null, null, null, null, null, null, 'J_uFXzFX7UXOpRpFHS89TRbJnxwfTeo8');
+INSERT INTO `supply` VALUES ('99', '临潼山核桃', null, '薄皮嫩核桃', '2019.08.05', '2019.09.05', '2000', '斤', 'http://static.hnjiajianmy.com/20181216162038667.jpg,http://static.hnjiajianmy.com/20181216162039905.jpg,http://static.hnjiajianmy.com/20181216162040719.jpg,http://static.hnjiajianmy.com/20181216162041183.jpg', '2', '1', '1544948468', null, null, null, null, null, null, null, null, 'J_uFXzFX7UXOpRpFHS89TRbJnxwfTeo8');
+INSERT INTO `supply` VALUES ('100', '临洮珍好', null, '白条党参', '2018.12.16', '2025.12.16', '0', '斤', 'http://static.hnjiajianmy.com/20181216225553936.jpg,http://static.hnjiajianmy.com/20181216225557341.jpg,http://static.hnjiajianmy.com/20181216225601898.jpg,http://static.hnjiajianmy.com/20181216225605842.jpg,http://static.hnjiajianmy.com/20181216225610502.jpg,http://static.hnjiajianmy.com/20181216225616944.jpg', '1', '1', '1544972216', null, null, null, null, null, null, null, null, 'CcW62ck9mVRF3BRO2v2kbJlvm5u8cN_L');
+INSERT INTO `supply` VALUES ('101', '临洮珍好', null, '临洮白条党参', '2018.12.16', '2019.01.16', '0', '斤', 'http://static.hnjiajianmy.com/20181216225254545.jpg,http://static.hnjiajianmy.com/20181216225256772.jpg,http://static.hnjiajianmy.com/20181216225258502.jpg,http://static.hnjiajianmy.com/20181216225304304.jpg', '1', '0', '1544972296', null, null, null, null, null, null, null, null, 'sqNNTpSGKFa7x7jdRe4nm3xpJGawiNUG');
+INSERT INTO `supply` VALUES ('102', '临洮珍好', null, '白条党参', '2018.12.16', '2020.12.16', '0', '斤', 'http://static.hnjiajianmy.com/20181216230850803.jpg,http://static.hnjiajianmy.com/20181216230900869.jpg', '1', '1', '1544972944', null, null, null, null, null, null, null, null, 'CcW62ck9mVRF3BRO2v2kbJlvm5u8cN_L');
+INSERT INTO `supply` VALUES ('103', '临洮珍好', null, '白条当参', '2018.12.16', '2018.01.16', '100', '斤', 'http://static.hnjiajianmy.com/20181216231644898.jpg,http://static.hnjiajianmy.com/20181216231645188.jpg,http://static.hnjiajianmy.com/20181216231646449.jpg,http://static.hnjiajianmy.com/20181216231747605.jpg', '1', '0', '1544973518', null, null, null, null, null, null, null, null, '5eyZGMAQ9UN6oHkLLnvKPhlAo02tKQzQ');
+INSERT INTO `supply` VALUES ('104', '临洮珍好', null, '小柴胡', '2018.12.16', '2020.12.16', '0', '斤', 'http://static.hnjiajianmy.com/20181216233734499.jpg,http://static.hnjiajianmy.com/20181216233735886.jpg,http://static.hnjiajianmy.com/20181216233736120.jpg', '1', '1', '1544974661', null, null, null, null, null, null, null, null, 'CcW62ck9mVRF3BRO2v2kbJlvm5u8cN_L');
+INSERT INTO `supply` VALUES ('105', '苹果苗', null, '苗木', '2018.12.15', '2019.02.08', '4000', '株', 'http://static.hnjiajianmy.com/20181217214721816.jpg', '1', '0', '1545201782', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('106', '抗重茬优良砧木', null, '苗木', '2018.12.15', '2019.02.08', '800', '株', 'http://static.hnjiajianmy.com/20181217214959271.jpg', '1', '0', '1545201600', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('107', '山茶籽油', null, '食用油', '2018.12.15', '2019.02.16', '8900', '斤', 'http://static.hnjiajianmy.com/20181217215119757.jpg', '1', '0', '1545201609', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('108', '羊肚菌', null, '食用菌', '2018.12.15', '2019.02.05', '600', '斤', 'http://static.hnjiajianmy.com/20181217215055311.jpg', '1', '0', '1545201669', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('109', '河阴软籽石榴树苗', null, '苗木', '2018.12.15', '2019.02.08', '20000', '株', 'http://static.hnjiajianmy.com/20181217215158354.jpg', '1', '0', '1545201618', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('110', '红富士苹果', null, '富士', '2018.12.15', '2019.02.08', '10000', '斤', 'http://static.hnjiajianmy.com/20181217215225892.jpg', '1', '0', '1545201626', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('111', '关中黑猪', null, '黑猪', '2018.12.15', '2019.02.08', '2000', '斤', 'http://static.hnjiajianmy.com/20181217215251565.jpg', '1', '0', '1545201635', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('112', '琯溪蜜柚', null, '柚子', '2018.12.15', '2019.02.09', '3000', '斤', 'http://static.hnjiajianmy.com/20181217215320488.jpg', '1', '0', '1545201651', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('113', '干赤松茸', null, '食用菌', '2018.12.15', '2019.02.09', '2000', '斤', 'http://static.hnjiajianmy.com/20181217215342231.jpg', '1', '0', '1545201642', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('114', '富平柿饼', null, '柿饼', '2018.12.15', '2019.02.08', '7000', '斤', 'http://static.hnjiajianmy.com/20181217215407327.jpg', '1', '0', '1545201659', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('115', '黑小麦面粉', null, '面粉', '2018.12.15', '2019.02.08', '3000', '斤', 'http://static.hnjiajianmy.com/20181217215427349.jpg', '1', '0', '1545201729', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('116', '富平降霜柿饼', null, '柿饼', '2018.12.15', '2019.02.18', '3000', '斤', 'http://static.hnjiajianmy.com/20181217214818400.jpg', '1', '0', '1545201767', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('117', '党参', null, '党参', '2018.12.15', '2019.02.08', '500', '斤', 'http://static.hnjiajianmy.com/20181217215447525.jpg', '1', '0', '1545201685', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('118', '苹果苗木', null, '苗木', '2018.12.15', '2019.02.08', '2000', '株', 'http://static.hnjiajianmy.com/20181217215510181.jpg', '1', '0', '1545201676', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('119', '太子参', null, '太子参', '2018.12.15', '2019.02.08', '300', '斤', 'http://static.hnjiajianmy.com/20181217215539631.jpg', '1', '0', '1545201692', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('120', '冷库有机土豆', null, '土豆', '2018.12.15', '2019.02.26', '6000', '斤', 'http://static.hnjiajianmy.com/20181217215607582.jpg', '1', '0', '1545201698', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('121', '大白鹅', null, '鹅', '2018.12.15', '2019.02.09', '2000', '斤', 'http://static.hnjiajianmy.com/20181217215626717.jpg', '1', '0', '1545201705', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('122', '糯麦仁', null, '糯麦仁', '2018.12.15', '2019.02.10', '8000', '斤', 'http://static.hnjiajianmy.com/20181217215654323.jpg', '1', '0', '1545201720', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('123', '五角枫', null, '苗木', '2018.12.15', '2019.02.11', '8000', '株', 'http://static.hnjiajianmy.com/20181217215712800.jpg', '1', '0', '1545201712', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('124', '白芨直播苗', null, '苗木', '2018.12.15', '2019.02.12', '1000', '株', 'http://static.hnjiajianmy.com/20181217215735954.jpg', '1', '0', '1545201752', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('125', '文冠果树苗', null, '苗木', '2018.12.15', '2019.02.13', '4000', '株', 'http://static.hnjiajianmy.com/20181217215803503.jpg', '1', '0', '1545201775', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('126', '苹果树苗', null, '苗木', '2018.12.15', '2019.02.04', '1000', '株', 'http://static.hnjiajianmy.com/20181217215825863.jpg', '1', '0', '1545201744', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('127', '齐慧红根韭菜种子', null, '种子', '2018.12.15', '2019.02.15', '500', '斤', 'http://static.hnjiajianmy.com/20181217215850649.jpg', '1', '0', '1545201761', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('128', '占地用桃树苗木', null, '苗木', '2018.12.15', '2019.02.16', '3500', '株', 'http://static.hnjiajianmy.com/20181217214657866.jpg', '1', '0', '1545201577', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('129', '菌包', null, '菌包', '2018.12.15', '2019.02.17', '10000', '斤', 'http://static.hnjiajianmy.com/20181217214630911.jpg', '1', '0', '1545201589', null, null, null, null, null, null, null, null, 'system_publisher');
+INSERT INTO `supply` VALUES ('130', '临洮珍好', null, '白条党参', '2017.12.16', '2031.04.16', '20000', '斤', 'http://static.hnjiajianmy.com/20181216234401847.jpg,http://static.hnjiajianmy.com/20181216234402934.jpg,http://static.hnjiajianmy.com/20181216234404511.jpg,http://static.hnjiajianmy.com/20181216234404995.jpg,http://static.hnjiajianmy.com/20181216234405974.jpg', '1', '1', '1544975085', null, null, null, null, null, null, null, null, 'sqNNTpSGKFa7x7jdRe4nm3xpJGawiNUG');
+INSERT INTO `supply` VALUES ('131', '萝卜', null, '苹果萝卜，水果萝卜', '2018.12.20', '2018.01.20', '10000', '斤', 'http://static.hnjiajianmy.com/20181220095512614.jpg,http://static.hnjiajianmy.com/20181220095516482.jpg,http://static.hnjiajianmy.com/20181220095519119.jpg,http://static.hnjiajianmy.com/20181220095523363.jpg,undefined,undefined', '1', '0', '1545271244', null, null, null, null, null, null, null, null, 'ErH_dRkl3vWSwNkOd1qz3hEheL7JxSI_');
+INSERT INTO `supply` VALUES ('132', '新疆灰枣', null, '新疆麦盖提灰枣', '2018.11.10', '2019.02.01', '100', '吨', 'http://static.hnjiajianmy.com/20181223010746528.jpg,http://static.hnjiajianmy.com/20181223010747112.jpg,http://static.hnjiajianmy.com/20181223010749641.jpg,http://static.hnjiajianmy.com/20181223010749722.jpg,http://static.hnjiajianmy.com/20181223010750916.jpg,http://static.hnjiajianmy.com/20181223010751500.jpg', '1', '0', '1545498476', null, null, null, null, null, null, null, null, 'YP7UJn52InIM6sDCpxhX_TjsKpCbMXRC');
+INSERT INTO `supply` VALUES ('133', '澳洛菲墙艺', null, '澳洛菲集成墙', '2016.10.18', '2026.10.24', '0', '株', 'http://static.hnjiajianmy.com/20181224105021905.jpg,http://static.hnjiajianmy.com/20181224105022678.jpg,http://static.hnjiajianmy.com/20181224105023493.jpg,http://static.hnjiajianmy.com/20181224105024868.jpg,http://static.hnjiajianmy.com/20181224105025433.jpg', '1', '1', '1545620461', null, null, null, null, null, null, null, null, 'cqVASi4c9i1lT481FnHuuStrkPSO_Lgg');
+INSERT INTO `supply` VALUES ('134', '无硫党参片0.3筛', null, '白条党参', '2018.12.27', '2019.12.27', '0', '斤', 'http://static.hnjiajianmy.com/20181227210303201.jpg,http://static.hnjiajianmy.com/20181227210304477.jpg', '1', '1', '1545915839', null, null, null, null, null, null, null, null, 'CcW62ck9mVRF3BRO2v2kbJlvm5u8cN_L');
+INSERT INTO `supply` VALUES ('135', '鸡', null, '良凤', '2019.01.04', '2019.01.15', '3000', '斤', 'http://static.hnjiajianmy.com/20181227215249789.jpg', '1', '0', '1545918782', null, null, null, null, null, null, null, null, 'efZFyIAlB2HDGlGEqGF6dneNHFCXlqRD');
+INSERT INTO `supply` VALUES ('136', '老农贡亚麻籽油', null, '500ml*2瓶礼盒、2.2L塑桶、1L铁桶', '2019.01.01', '2019.03.31', '0', '千克', 'http://static.hnjiajianmy.com/20181231184303627.jpg,http://static.hnjiajianmy.com/20181231184304975.jpg,http://static.hnjiajianmy.com/20181231184305993.jpg', '1', '1', '1546253070', null, null, null, null, null, null, null, null, 'P0JV9feV80jYzJ8X8y3tpyzTLvlwBzs2');
+INSERT INTO `supply` VALUES ('137', '腊肉', null, '陕南黑猪腊肉', '2019.01.01', '2019.05.01', '500', '斤', 'http://static.hnjiajianmy.com/20190101220741764.jpg,http://static.hnjiajianmy.com/20190101220742651.jpg,http://static.hnjiajianmy.com/20190101220745600.jpg,http://static.hnjiajianmy.com/20190101220748603.jpg,http://static.hnjiajianmy.com/20190101220751400.jpg,http://static.hnjiajianmy.com/20190101220753846.jpg', '1', '1', '1546351679', null, null, null, null, null, null, null, null, 'pfTnrAKspMs94ClNv0nN2Ea2d3hqdtNl');
+INSERT INTO `supply` VALUES ('138', '玉米锅巴', null, '手工制作玉米锅巴', '2019.01.01', '2019.07.01', '800', '斤', 'http://static.hnjiajianmy.com/20190101220857491.jpg,http://static.hnjiajianmy.com/20190101220857122.jpg,http://static.hnjiajianmy.com/20190101220858433.jpg,http://static.hnjiajianmy.com/20190101220956424.jpg,http://static.hnjiajianmy.com/20190101220956986.jpg,http://static.hnjiajianmy.com/20190101220957659.jpg', '1', '1', '1546351801', null, null, null, null, null, null, null, null, 'pfTnrAKspMs94ClNv0nN2Ea2d3hqdtNl');
+INSERT INTO `supply` VALUES ('139', '蜂蜜', null, '野生蜂蜜', '2019.01.01', '2020.01.01', '100', '斤', 'http://static.hnjiajianmy.com/20190101221147245.jpg,http://static.hnjiajianmy.com/20190101221148620.jpg,http://static.hnjiajianmy.com/20190101221149116.jpg,http://static.hnjiajianmy.com/20190101221151173.jpg,http://static.hnjiajianmy.com/20190101221154973.jpg,http://static.hnjiajianmy.com/20190101221156628.jpg', '1', '1', '1546351924', null, null, null, null, null, null, null, null, 'pfTnrAKspMs94ClNv0nN2Ea2d3hqdtNl');
+INSERT INTO `supply` VALUES ('140', '石耳也叫蒲木耳', null, '秦岭野生', '2019.01.01', '2020.01.01', '10', '斤', 'http://static.hnjiajianmy.com/20190101221451183.jpg,http://static.hnjiajianmy.com/20190101221453385.jpg', '1', '1', '1546352108', null, null, null, null, null, null, null, null, 'pfTnrAKspMs94ClNv0nN2Ea2d3hqdtNl');
+INSERT INTO `supply` VALUES ('141', '黄芪手工切片', null, '黄芪', '2019.01.04', '2021.06.04', '500', '克', 'http://static.hnjiajianmy.com/20190104113343310.jpg,http://static.hnjiajianmy.com/20190104113344349.jpg,http://static.hnjiajianmy.com/20190104113345378.jpg,http://static.hnjiajianmy.com/20190104113346537.jpg,http://static.hnjiajianmy.com/20190104113346762.jpg,http://static.hnjiajianmy.com/20190104113347826.jpg', '1', '1', '1546572878', null, null, null, null, null, null, null, null, '4mDZljb37GMkA3s4vzquA7zX8FqRLAso');
+INSERT INTO `supply` VALUES ('142', '金莲花', null, '金莲花', '2019.01.04', '2021.01.04', '200', '克', 'http://static.hnjiajianmy.com/20190104173143230.jpg,http://static.hnjiajianmy.com/20190104173143981.jpg,http://static.hnjiajianmy.com/20190104173144856.jpg,http://static.hnjiajianmy.com/20190104173144826.jpg,http://static.hnjiajianmy.com/20190104173145259.jpg,http://static.hnjiajianmy.com/20190104173145231.jpg', '1', '1', '1546594342', null, null, null, null, null, null, null, null, '4mDZljb37GMkA3s4vzquA7zX8FqRLAso');
+INSERT INTO `supply` VALUES ('143', '花椒', null, '大红袍', '2018.11.06', '2019.04.06', '10000', '斤', 'http://static.hnjiajianmy.com/20190106202124266.jpg', '1', '1', '1546777286', null, null, null, null, null, null, null, null, 'OHAN0MGJWOdq44TVcQN1GxUl6xqD7k9x');
+INSERT INTO `supply` VALUES ('144', '硒秦土鸡蛋', null, '土鸡蛋', '2014.01.01', '2038.01.07', '100000', '斤', 'http://static.hnjiajianmy.com/20190107122721939.jpg,http://static.hnjiajianmy.com/20190107122723823.jpg,http://static.hnjiajianmy.com/20190107122724579.jpg,http://static.hnjiajianmy.com/20190107122725702.jpg,http://static.hnjiajianmy.com/20190107122726338.jpg,http://static.hnjiajianmy.com/20190107122727742.jpg', '1', '1', '1546835268', null, null, null, null, null, null, null, null, 'CHzv1QT3aEK_gExRjyGz09qam4v_Nnme');
+INSERT INTO `supply` VALUES ('145', '松树', null, '云杉', '1970.01.11', '1970.01.11', '10000', '株', 'http://static.hnjiajianmy.com/20190111145607167.jpg', '2', '0', '1547189775', null, null, null, null, null, null, null, null, 'QGlx3iOtZqpL7qNE4urp0o3T3D9GPMEB');
+INSERT INTO `supply` VALUES ('146', '山药', null, '白玉山药', '2019.01.14', '2019.03.18', '3', '斤', 'http://static.hnjiajianmy.com/20190114215240750.jpg,http://static.hnjiajianmy.com/20190114215241240.jpg,http://static.hnjiajianmy.com/20190114215242552.jpg,http://static.hnjiajianmy.com/20190114215242204.jpg,http://static.hnjiajianmy.com/20190114215243771.jpg,http://static.hnjiajianmy.com/20190114215243193.jpg', '1', '1', '1547473971', null, null, null, null, null, null, null, null, 'Q7cWVC7C4gwTw2teUnAcg4N7c3AhkP8Z');
+INSERT INTO `supply` VALUES ('147', '树苗', null, '金叶榆', '2019.01.15', '2019.07.16', '0', '株', 'http://static.hnjiajianmy.com/20190115071220905.jpg,http://static.hnjiajianmy.com/20190115071222957.jpg,http://static.hnjiajianmy.com/20190115071223497.jpg,http://static.hnjiajianmy.com/20190115071224613.jpg,http://static.hnjiajianmy.com/20190115071225870.jpg,http://static.hnjiajianmy.com/20190115071226647.jpg', '1', '1', '1547507549', null, null, null, null, null, null, null, null, 'jda8Q6RS4SD233HOL91vvb55MhfjNe4C');
+INSERT INTO `supply` VALUES ('148', '黑山羊肉', null, '山羊', '2018.01.15', '2021.02.15', '1000', '斤', 'http://static.hnjiajianmy.com/20190115071523552.jpg,http://static.hnjiajianmy.com/20190115071523295.jpg,http://static.hnjiajianmy.com/20190115071524192.jpg,http://static.hnjiajianmy.com/20190115071524983.jpg,http://static.hnjiajianmy.com/20190115071525609.jpg,http://static.hnjiajianmy.com/20190115071525345.jpg', '1', '1', '1547507754', null, null, null, null, null, null, null, null, 'dOC9_YLbe34OZ4Wm84irpdtqvm0CrBe8');
+INSERT INTO `supply` VALUES ('149', '马铃薯', null, '荷兰十五', '2019.07.15', '2019.11.14', '1000', '吨', 'http://static.hnjiajianmy.com/20190115190614764.jpg,http://static.hnjiajianmy.com/20190115190615775.jpg', '2', '0', '1547550384', null, null, null, null, null, null, null, null, 'Ao4WEhUhPQLwQZhCtDwDSL1O_0j8FMIX');
+INSERT INTO `supply` VALUES ('150', '苹果', null, '红富士', '2019.01.16', '2019.04.20', '50000', '斤', 'http://static.hnjiajianmy.com/20190116101442693.jpg,http://static.hnjiajianmy.com/20190116101454754.jpg,http://static.hnjiajianmy.com/20190116101500561.jpg,http://static.hnjiajianmy.com/20190116101507564.jpg,http://static.hnjiajianmy.com/20190116101519405.jpg,http://static.hnjiajianmy.com/20190116101526204.jpg', '1', '1', '1547604983', null, null, null, null, null, null, null, null, 'HTVhz4vZ1E44xZL21QzixIAuP2hqOZOa');
+INSERT INTO `supply` VALUES ('152', '中药材种苗', null, '苍术，重楼，赤芍', '2019.01.21', '2019.11.21', '0', '株', 'http://static.hnjiajianmy.com/20190121223325787.jpg,http://static.hnjiajianmy.com/20190121223326549.jpg,http://static.hnjiajianmy.com/20190121223327800.jpg,http://static.hnjiajianmy.com/20190121223328510.jpg', '1', '1', '1548081233', null, null, null, null, null, null, null, null, 'u67k0aLqD42DxA1Db5568A1UaM9RnnDs');
+INSERT INTO `supply` VALUES ('153', '秦岭山特产', null, '土蜂蜜，黑木耳，天麻', '2019.01.21', '2019.04.22', '100', '斤', 'http://static.hnjiajianmy.com/20190121223858322.jpg,http://static.hnjiajianmy.com/20190121223858255.jpg,http://static.hnjiajianmy.com/20190121223859898.jpg,http://static.hnjiajianmy.com/20190121223859576.jpg,http://static.hnjiajianmy.com/20190121223900539.jpg,http://static.hnjiajianmy.com/20190121223900229.jpg', '1', '1', '1548081544', null, null, null, null, null, null, null, null, 'u67k0aLqD42DxA1Db5568A1UaM9RnnDs');
+INSERT INTO `supply` VALUES ('155', '伊拉种兔比利时种兔', null, '伊拉种兔幼兔', '2019.02.20', '2019.02.20', '5000', '公斤', 'http://static.hnjiajianmy.com/20190220165100117.jpg,http://static.hnjiajianmy.com/20190220165102214.jpg,http://static.hnjiajianmy.com/20190220165103543.jpg,http://static.hnjiajianmy.com/20190220165104893.jpg,http://static.hnjiajianmy.com/20190220165107199.jpg,http://static.hnjiajianmy.com/20190220165114272.jpg', '1', '0', '1550652686', null, null, null, null, null, null, null, null, 'tEJS9WR3R0KOkoY0B5dNJBzVRbAQF2XH');
+INSERT INTO `supply` VALUES ('156', '小二馬生态羊肉', null, '羊肉', '2019.02.24', '2019.06.24', '500', '斤', 'http://static.hnjiajianmy.com/20190224175430902.jpg,http://static.hnjiajianmy.com/20190224175431934.jpg', '1', '1', '1551002086', null, null, null, null, null, null, null, null, 'seDskeoROg7qlLdSLL0xFMzXCH3I51A0');
