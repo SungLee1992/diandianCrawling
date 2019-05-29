@@ -72,7 +72,7 @@ ITEM_PIPELINES = {
    #'crawling.pipelines.CrawlingPipeline_1': 300,      #值表示距离引擎的远近
    #'crawling.pipelines.CrawlingPipeline_2': 301,      #值表示距离引擎的远近,值越小，表示距离pipeline的引擎跃进
    #'crawling.pipelines.Itcast1Pipeline': 300,
-   'crawling.pipelines.CrawlingPipeline_SXNYNCT':300,
+   'crawling.pipelines.Sxnynct_SupAndPur_Pipeline':300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

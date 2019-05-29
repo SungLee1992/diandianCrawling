@@ -21,8 +21,8 @@ class ExampleSpider(scrapy.Spider):
         #print(ret1)
 
         #分组
-        li_lsit = response.xpath("//div[@class='tea_con']//li")
-        for li in li_lsit:
+        li_list = response.xpath("//div[@class='tea_con']//li")
+        for li in li_list:
             item = {}
             item["url"] = li
             #item["name"] = li.xpath(".//h3/text()").extract()[0]
