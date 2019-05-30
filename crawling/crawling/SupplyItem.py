@@ -8,6 +8,7 @@ import scrapy
 
 class SupplyItem(scrapy.Item):
     pro_name = scrapy.Field()         #供应产品名称
+    pro_price = scrapy.Field()        #供应产品目标价格
     category_id = scrapy.Field()      # 产品所属分类
     sup_variety = scrapy.Field()      #产品分类
     start_time = scrapy.Field()       #开始时间
@@ -25,6 +26,6 @@ class SupplyItem(scrapy.Item):
     sup_email = scrapy.Field()        #邮箱
     sup_address = scrapy.Field()      #供应地址
     sup_description = scrapy.Field()  #供应描述
-    sup_from = scrapy.Field()         #供应信息来源
+    info_from = scrapy.Field()         #供应信息来源
     user_token = scrapy.Field()       #发布用户
     pass

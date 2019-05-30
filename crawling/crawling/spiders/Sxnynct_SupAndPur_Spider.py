@@ -4,7 +4,7 @@ import re
 from copy import deepcopy
 from crawling.SupplyItem import SupplyItem
 
-logger = logging.getLogger(__name__)  # "__name"可以取到当前文件名itcast1.py
+logger = logging.getLogger(__name__)  # "__name"可以取到当前文件名Sxnynct_Pur_Spider.py
 
 
 class Sxnynct_Pur_Spider(scrapy.Spider):
@@ -52,14 +52,14 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
                 item['pub_title'] = li.xpath(".//a/text()").extract_first()
                 item['pub_address'] = li.xpath(".//a/em/text()").extract_first().strip("[]")
                 item['pub_time'] = li.xpath("span[@class='r']/text()").extract_first().strip("[]")
-                detail_url = li.xpath(".//a/@href").extract_first()
+                detail_url = li.xpath(".//a/@href").extract_first() #取详情页链接
 
                 # url不为空，则请求详细页
                 # 二级详细页解析
                 if detail_url is not None:
-                    item['sup_from'] = "http://222.90.83.241/" + detail_url
+                    item['info_from'] = "http://222.90.83.241/" + detail_url
                     yield scrapy.Request(
-                        item['sup_from'],
+                        item['info_from'],
                         callback=self.parse_detail,  # 详细页的解析
                         meta={"item": deepcopy(item),"type":response.meta["type"]}
                     )
@@ -78,7 +78,7 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
 
     def parse_detail(self, response):
         item = response.meta["item"]
-        print("[" + item["pub_title"] + item["pub_time"] + "]" + item['sup_from'])
+        print("[" + item["pub_title"] + item["pub_time"] + "]" + item['info_from'])
         content = response.xpath("//div[@class='show_content'][1]").extract_first()
         map = {"item":item , "content":content , "type":response.meta["type"]}
         yield map
