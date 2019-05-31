@@ -61,7 +61,7 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
                 )
 
         # 翻页
-        page_count = 10      #最多爬n页
+        page_count = 1      #最多爬n页
         cur_page = int(response.xpath("//div[@id='AspNetPager1']/span/text()").extract_first().strip())  # 取当前页页码
         if cur_page in range(page_count):
             # 翻页列表页解析

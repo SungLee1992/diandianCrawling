@@ -12,9 +12,9 @@ class Zgncpw_Pur_Spider(scrapy.Spider):
     name = 'Zgncpw_Pur_Spider'  # 爬虫名
     allowed_domains = ['zgncpw.com']  # 允许爬的范围
     start_urls = ['http://www.zgncpw.com/buy/']  # 最开始请求的url地址，直接爬取全部分类和全部地区
-    #pur_listIds = ['18472', '18476', '18470', '102', '18535','18542','18477','18928']  # 分别是新鲜蔬菜、畜牧水产、米面粮油、生鲜水果、农副产品、农资产品、花卉苗木、中草药材求购信息url的listId
+    pur_listIds = ['18472', '18476', '18470', '102', '18535','18542','18477','18928']  # 分别是新鲜蔬菜、畜牧水产、米面粮油、生鲜水果、农副产品、农资产品、花卉苗木、中草药材求购信息url的listId
 
-    pur_listIds = ['18472','18476']
+    # pur_listIds = ['18472','18476']
     """
     大类信息的列表页面解析
     """
