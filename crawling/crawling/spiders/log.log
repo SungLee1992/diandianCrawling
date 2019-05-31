@@ -1,0 +1,15 @@
+2019-05-31 19:32:45 [scrapy.core.scraper] ERROR: Error processing {'result_item': {'end_time': '',
+ 'info_from': 'http://www.zgncpw.com/buy/show-16517.html',
+ 'pub_address': '全国',
+ 'pub_time': '2019-01-21',
+ 'pub_title': None,
+ 'pur_address': '',
+ 'pur_num': '3万斤',
+ 'pur_require': '需求数量3万斤,价格全国,长期有效,,',
+ 'pur_user': '杨志勇'}, 'type': 'purchase'}
+Traceback (most recent call last):
+  File "d:\code\python3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "D:\Code\workspace\Pyspace\diandianCrawling\crawling\crawling\pipelines.py", line 44, in process_item
+    print(item["type"] + "-" * 20+item["result_item"]["pub_title"])
+TypeError: can only concatenate str (not "NoneType") to str

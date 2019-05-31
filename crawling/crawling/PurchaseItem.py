@@ -25,6 +25,6 @@ class PurchaseItem(scrapy.Item):
     pur_phone = scrapy.Field()        #联系电话
     pur_email = scrapy.Field()        #邮箱
     pur_address = scrapy.Field()      #采购地址
-    info_from = scrapy.Field()         #供应信息来源
+    info_from = scrapy.Field()        #供应信息来源
     user_token = scrapy.Field()       #发布用户
     pass

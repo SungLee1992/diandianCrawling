@@ -13,17 +13,34 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# 陕西农业农村厅需求和供应爬虫
+# 陕西农业农村厅需求和供应数据处理
 class Sxnynct_SupAndPur_Pipeline(object):
     def process_item(self, item, spider):
         if spider.name == "Sxnynct_SupAndPur_Spider":
             #供应信息处理
             if item["type"] == "supply":
-                print(item["type"]+"-"*20)
+                print(item)
+                print(item["result_item"]["pub_title"]+"-"*20)
                 print(item["content"])
 
             #需求信息处理
             if item["type"] == "purchase":
                 print(item["type"] + "-" * 20)
+                print(item["result_item"]["pub_title"]+"-"*20)
                 print(item["content"])
+        return item
+
+# 中国农产品网需求和供应爬虫
+class Zgncpw_Pur_Pipeline(object):
+    def process_item(self, item, spider):
+        if spider.name == "Zgncpw_Pur_Spider":
+            # #供应信息处理
+            # if item["type"] == "supply":
+            #     print(item["type"]+"-"*20)
+            #     print(item["content"])
+
+            #需求信息处理
+            if item["type"] == "purchase":
+                print(item["type"] + "-" * 20+item["result_item"]["pub_title"])
+                print(item["result_item"]["pur_require"])
         return item
