@@ -24,6 +24,7 @@ class Zgncpw_Pur_Spider(scrapy.Spider):
         for listId in self.pur_listIds:
             cur_category_url = self.start_urls[0] + "list-{}.html".format(listId)  # 大类的url
             print(cur_category_url)
+            # 在每个大类中按照物品名称进行小分类
             yield scrapy.Request(
                 cur_category_url,
                 callback=self.parse_category,
