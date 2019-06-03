@@ -107,8 +107,6 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
         item['end_time'] = end_time
         item['sup_address'] = sup_address
 
-        print(item)
-        print("-------")
 
         result_map = {"result_item": item, "type": response.meta["type"]}
         yield result_map
