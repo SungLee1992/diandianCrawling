@@ -80,7 +80,36 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
 
     def parse_detail(self, response):
         item = response.meta["item"]
-        print("[" + item["pub_title"] + item["pub_time"] + "]" + item['info_from'])
-        content = response.xpath("//div[@class='show_content'][1]").extract_first()
-        result_map = {"result_item": item, "content": content, "type": response.meta["type"]}
+        content = response.xpath("//div[@class='show_content'][1]")
+
+        dr = re.compile(r'<[^>]+>',re.S)
+        i_content = dr.sub('',content.extract_first())
+
+        items = i_content.split('\r')
+        result = ""
+        for ii in items:
+            str = "".join(ii.split())
+            if str:
+                result += str
+        # print(result)
+        
+        sup_description = result[0:result.find('联系人：')]
+        sup_user = result[result.rfind('联系人：')+4:result.rfind('联系电话：')]
+        sup_phone = result[result.rfind('联系电话：')+5:result.rfind('有效期：')]
+        end_time = result[result.rfind('有效期：')+4:result.rfind('地址：')]
+        sup_address = result[result.rfind('地址：')+3:result.rfind('邮箱：')]
+
+        result = ""
+        
+        item['sup_description'] = sup_description
+        item['sup_user'] = sup_user
+        item['sup_phone'] = sup_phone
+        item['end_time'] = end_time
+        item['sup_address'] = sup_address
+
+        print(item)
+        print("-------")
+
+        result_map = {"result_item": item, "type": response.meta["type"]}
         yield result_map
+        
