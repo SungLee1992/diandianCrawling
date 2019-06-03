@@ -26,7 +26,7 @@ CREATE TABLE `category_dictionary` (
   `category_s` smallint(4) DEFAULT NULL COMMENT '小类',
   `category_c` int(11) DEFAULT NULL COMMENT '具体类',
   `category_name` varchar(255) DEFAULT NULL COMMENT '类别名称',
-  `explanation` varchar(255) DEFAULT NULL COMMENT '说明',
+  `explanation` varchar(1000) DEFAULT NULL COMMENT '说明',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=600 DEFAULT CHARSET=utf8;
 

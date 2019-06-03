@@ -12,10 +12,11 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
     name = 'Zgncpw_Sup_Spider'  # 爬虫名
     allowed_domains = ['zgncpw.com']  # 允许爬的范围
     start_urls = ['http://www.zgncpw.com/sell/']
-    # sup_listIds = ['13', '9', '16', '6', '202', '212', '17',
-    #                '1123']  # 分别是生鲜水果、新鲜蔬菜、畜牧水产、米面粮油、农副产品、农资产品、花卉苗木、中草药材供应信息url的listId
+    sup_listIds = ['13', '9', '16', '6', '202', '212', '17',
+                    '1123']  # 分别是生鲜水果、新鲜蔬菜、畜牧水产、米面粮油、农副产品、农资产品、花卉苗木、中草药材供应信息url的listId
 
-    sup_listIds = ['13', '9']
+    # sup_listIds = ['13', '9']
+
     """
     大类信息的列表页面解析
     """
@@ -68,7 +69,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
                 )
     #
         # 翻页
-        page_count = 1  # 最多爬n页
+        page_count = 5  # 最多爬n页
         cur_page_str = response.xpath("//div[@class='pages']/strong/text()").extract_first()
         if cur_page_str is not None :
             cur_page = int(cur_page_str.strip())  # 取当前页页码
