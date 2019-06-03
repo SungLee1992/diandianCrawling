@@ -28656,3 +28656,22 @@ Traceback (most recent call last):
     raise ValueError('Missing scheme in request url: %s' % self._url)
 ValueError: Missing scheme in request url: 
 2019-06-04 01:38:11 [scrapy.core.downloader.handlers.http11] WARNING: Got data loss in http://www.zgncpw.com/sell/show/48715/. If you want to process broken responses set the setting DOWNLOAD_FAIL_ON_DATALOSS = False -- This message won't be shown in further requests
+2019-06-04 01:48:35 [scrapy.core.scraper] ERROR: Spider error processing <GET http://www.zgncpw.com/sell/list-1003.html> (referer: http://www.zgncpw.com/sell/list-16.html)
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\utils\defer.py", line 102, in iter_errback
+    yield next(it)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 339, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "D:\Documents\Desktop\git\diandianbangnong\diandianCrawling\crawling\crawling\spiders\Zgncpw_Sup_Spider.py", line 68, in parse_pro
+    meta={"item": deepcopy(item), "type": "supply"}
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\http\request\__init__.py", line 25, in __init__
+    self._set_url(url)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\http\request\__init__.py", line 62, in _set_url
+    raise ValueError('Missing scheme in request url: %s' % self._url)
+ValueError: Missing scheme in request url: 
