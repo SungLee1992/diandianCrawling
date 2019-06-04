@@ -4,7 +4,6 @@ import re
 import datetime
 from copy import deepcopy
 
-from crawling.PurchaseItem import PurchaseItem
 from crawling.SupplyItem import SupplyItem
 
 logger = logging.getLogger(__name__)  # "__name"可以取到当前文件名Sxnynct_Pur_Spider.py

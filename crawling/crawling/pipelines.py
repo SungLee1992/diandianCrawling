@@ -143,7 +143,7 @@ class Sxnynct_SupAndPur_Pipeline(object):
     def process_item(self, item, spider):
         if spider.name == "Sxnynct_SupAndPur_Spider":
             data_item = item['result_item']
-            sql = 'INSERT INTO test (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
+            sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
 
             data = (data_item['pub_title']+"", data_item['sup_variety']+"", data_item['end_time']+"",'',
                     data_item['sup_phone']+"",data_item['sup_user']+"", '陕西省农村信息站监管系统', data_item['type'])
@@ -158,7 +158,7 @@ class Zgncpw_SupAndPur_Pipeline(object):
     def process_item(self, item, spider):
         if spider.name == "Zgncpw_Pur_Spider" or spider.name == "Zgncpw_Sup_Spider" :
             data_item = item['result_item']
-            sql = 'INSERT INTO test (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
+            sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
             data = (data_item['pub_title'], data_item['sup_variety'], data_item['end_time'], data_item['sup_num'],
                     '暂无', data_item['sup_user'], '中国农产品网', data_item['sup_type'])
             item['sql'] = sql
