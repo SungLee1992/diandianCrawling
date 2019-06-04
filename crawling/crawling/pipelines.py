@@ -11,18 +11,24 @@
 
 import logging
 import pymysql
-# from crawling.SupplyItem import SupplyItem
-
-
-#import pymysql.cursors
-# from sqlalchemy import create_engine,Column,Integer,String,Table,MetaData
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker
-#from crawling.settings import settings
 
 logger = logging.getLogger(__name__)
 
+#统一数据库处理pipeline
+class DB_Pipeline(object):
+    def process_item(self, item, spider):
+        db = pymysql.connect('localhost', 'root', '123456', 'bangnong')
+        cursor = db.cursor()
+        try:
+            cursor.execute(item['sql'], item['data'])
+            print(item['data'][1]+'write success')
+        except Exception as e:
+            db.rollback()
+            logger.error(e)
+        db.commit()
+        db.close()
 
+        return item
 #class DB_Pipeline(object):
     # def __init__(self):  # 执行爬虫时
     #     self.engine = create_engine('mysql://root:0@localhost:3306/spider?charset=utf8', echo=True)  # 连接数据库
@@ -118,7 +124,6 @@ logger = logging.getLogger(__name__)
 
 # 陕西农业农村厅需求和供应数据处理
 class Sxnynct_SupAndPur_Pipeline(object):
-
     #准备写一个可复用的方法专门用来做入库操作
     # @staticmethod
     # def save_data(self,dataItem):
@@ -135,95 +140,27 @@ class Sxnynct_SupAndPur_Pipeline(object):
     #     db.close()
     #     print(dataItem)
 
-
-
     def process_item(self, item, spider):
-
-        db = pymysql.connect('localhost','root','123456','bangnong')
-        cursor = db.cursor()
-        sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
-
-
-        
         if spider.name == "Sxnynct_SupAndPur_Spider":
-            sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
-            
-            # 供应信息处理
-            if item["type"] == "supply":
-                print(item["type"] + "-" * 20)
+            data_item = item['result_item']
+            sql = 'INSERT INTO test (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
 
-                data_item = item['result_item']
-                data = (data_item['pub_title'],data_item['sup_description'],data_item['end_time'],'',data_item['sup_phone'],data_item['sup_user'],'陕西省农村信息站监管系统','供应')
-                
+            data = (data_item['pub_title']+"", data_item['sup_variety']+"", data_item['end_time']+"",'',
+                    data_item['sup_phone']+"",data_item['sup_user']+"", '陕西省农村信息站监管系统', data_item['type'])
 
-            # 需求信息处理
-            if item["type"] == "purchase":
-                print(item["type"] + "-" * 20)
-
-                data_item = item['result_item']
-                data = (data_item['pub_title'],data_item['sup_description'],data_item['end_time'],'',data_item['sup_phone'],data_item['sup_user'],'陕西省农村信息站监管系统','需求')
-               
-            try:
-                cursor.execute(sql,data)
-                print('write success')
-            except Exception as e:
-                db.rollback()
-                print(e)
-            db.commit()
-            db.close()
-
+            item['sql'] = sql
+            item['data'] = data
         return item
 
 
-# 中国农产品网供应爬虫
-class Zgncpw_Pur_Pipeline(object):
+# 中国农产品网供需信息处理
+class Zgncpw_SupAndPur_Pipeline(object):
     def process_item(self, item, spider):
-
-        db = pymysql.connect('localhost','root','123456','bangnong')
-        cursor = db.cursor()
-        sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
-
-
-        if spider.name == "Zgncpw_Pur_Spider":
-            # 需求信息处理
-            if item["type"] == "purchase":
-                print(item["type"] + "-" * 20)
-                data_item = item['result_item']
-                data = (data_item['pub_title'],data_item['pub_title'],data_item['end_time'],data_item['pur_num'],'暂无',data_item['pur_user'],'中国农产品网','需求')
-                # print(item["result_item"])
-        try:
-            cursor.execute(sql,data)
-            print('write success')
-        except Exception as e:
-            db.rollback()
-            print(e)
-        db.commit()
-        db.close()
-        return item
-
-
-# 中国农产品网供应爬虫
-class Zgncpw_Sup_Pipeline(object):
-    def process_item(self, item, spider):
-
-        db = pymysql.connect('localhost','root','123456','bangnong')
-        cursor = db.cursor()
-        sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
-
-        if spider.name == "Zgncpw_Sup_Spider":
-            # 供应信息处理
-            if item["type"] == "supply":
-                print(item["type"] + "-" * 20)
-                data_item = item['result_item']
-                data = (data_item['pro_name'],data_item['sup_variety'],data_item['end_time'],data_item['sup_num'],'暂无','','中国农产品网','供应')
-                # print(item["result_item"])
-        try:
-            cursor.execute(sql,data)
-            print('write success')
-        except Exception as e:
-            db.rollback()
-            print(e)
-        db.commit()
-        db.close()
-
+        if spider.name == "Zgncpw_Pur_Spider" or spider.name == "Zgncpw_Sup_Spider" :
+            data_item = item['result_item']
+            sql = 'INSERT INTO test (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
+            data = (data_item['pub_title'], data_item['sup_variety'], data_item['end_time'], data_item['sup_num'],
+                    '暂无', data_item['sup_user'], '中国农产品网', data_item['sup_type'])
+            item['sql'] = sql
+            item['data'] = data
         return item
