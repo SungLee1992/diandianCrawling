@@ -87,7 +87,8 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
         #item["pro_name"] = response.xpath("//div[@class='fxl pos-text']/span[last()]/text()").extract_first().strip()  # 取标题名
         # 爬详细
         ul = response.xpath("//ul[@class='two l-big line-height-36 clearfix']")
-
+        # TODO 此处产品名称待定
+        item["pro_name"] = response.xpath("//div[@class='fxl']//a[4]/text()").extract_first()
         item["sup_user"] = response.xpath("//a[@class='fxl fs-16']/text()").extract_first()
         if item["sup_user"] is None or item["sup_user"] is "":
             item["sup_user"] = ""
@@ -147,4 +148,5 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
         # 构造传递给pipeline的数据结构
         result_map = {"result_item": item}
 
+        # print(result_map)
         yield result_map

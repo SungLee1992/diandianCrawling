@@ -75,6 +75,7 @@ ITEM_PIPELINES = {
    'crawling.pipelines.DB_Pipeline':400,
    'crawling.pipelines.Sxnynct_SupAndPur_Pipeline':300,
    'crawling.pipelines.Zgncpw_SupAndPur_Pipeline':300,
+   'crawling.pipelines.Article_Pipeline':300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
