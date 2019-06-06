@@ -15,7 +15,7 @@ SPIDER_MODULES = ['crawling.spiders']
 NEWSPIDER_MODULE = 'crawling.spiders'
 
 LOG_LEVEL = "WARNING"
-LOG_FILE = "./log.log"  #保存到本地，控制台则不输出
+#LOG_FILE = "./log.log"  #保存到本地，控制台则不输出
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'crawling (+http://www.yourdomain.com)'
@@ -72,10 +72,9 @@ ITEM_PIPELINES = {
    #'crawling.pipelines.CrawlingPipeline_1': 300,      #值表示距离引擎的远近
    #'crawling.pipelines.CrawlingPipeline_2': 301,      #值表示距离引擎的远近,值越小，表示距离pipeline的引擎跃进
    #'crawling.pipelines.Itcast1Pipeline': 300,
-   #'crawling.pipelines.DB_Pipeline':301,
+   'crawling.pipelines.DB_Pipeline':400,
    'crawling.pipelines.Sxnynct_SupAndPur_Pipeline':300,
-   'crawling.pipelines.Zgncpw_Pur_Pipeline':300,
-   'crawling.pipelines.Zgncpw_Sup_Pipeline':300,
+   'crawling.pipelines.Zgncpw_SupAndPur_Pipeline':300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

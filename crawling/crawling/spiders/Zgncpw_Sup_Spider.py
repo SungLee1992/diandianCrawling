@@ -1,6 +1,6 @@
 import scrapy
 import logging
-import re
+import datetime
 from copy import deepcopy
 
 from crawling.SupplyItem import SupplyItem
@@ -28,8 +28,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
             # 在每个大类中按照物品名称进行小分类
             yield scrapy.Request(
                 category_url,
-                callback=self.parse_category,
-                meta={"type": "supply"}
+                callback=self.parse_category
             )
 
     """
@@ -38,20 +37,16 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
     def parse_category(self,response):
         a_list = response.xpath("//div[@class='bg-gray clearfix']//a")  # 取a列表
         for a in a_list:
-            item = SupplyItem()
-            item["pro_name"] = a.xpath("./text()").extract_first().strip()  # 取分类名
             cur_category_url = a.xpath("./@href").extract_first()
             yield scrapy.Request(
                 cur_category_url,
-                callback=self.parse_pro,
-                meta={"type": "supply", "item": item}
+                callback=self.parse_pro
             )
 
     def parse_pro(self, response):
-        items = []  # 存放SupplyItem集合
         li_list = response.xpath("//div[@class='list pad10 clearfix show-hide-data']//ul/li")  # 取ul列表
         # 解析li列表
-        item = response.meta["item"]
+        item = SupplyItem()
         for li in li_list:
             item['sup_variety'] = li.xpath("./a[@class='catname tit-bg-orange pos-abs']/text()").extract_first()
             item['pro_price'] = li.xpath(".//a[@class='font-gray-5']//div[@class='pad-t-d-10 text-align-c clearfix']/span/text()").extract_first()
@@ -65,7 +60,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
                 yield scrapy.Request(
                     item['info_from'],
                     callback=self.parse_detail,  # 详细页的解析
-                    meta={"item": deepcopy(item), "type": "supply"}
+                    meta={"item": deepcopy(item)}
                 )
     #
         # 翻页
@@ -79,7 +74,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
                 yield scrapy.Request(
                     next_page_url,
                     callback=self.parse_pro,
-                    meta={"item": item, "type": response.meta["type"]}
+                    meta={"item": item}
                 )
 
 
@@ -89,9 +84,30 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
 
     def parse_detail(self, response):
         item = response.meta["item"]
-
+        #item["pro_name"] = response.xpath("//div[@class='fxl pos-text']/span[last()]/text()").extract_first().strip()  # 取标题名
         # 爬详细
         ul = response.xpath("//ul[@class='two l-big line-height-36 clearfix']")
+
+        item["sup_user"] = response.xpath("//a[@class='fxl fs-16']/text()").extract_first()
+        if item["sup_user"] is None or item["sup_user"] is "":
+            item["sup_user"] = ""
+
+        try:
+            item["end_time"] = ul.xpath("./li[6]/text()").extract_first()
+            # 截止日期已到时直接退出
+            # if datetime.datetime.strptime(item["end_time"],"%Y-%m-%d") < datetime.datetime.now():
+            #     return
+        except Exception as e:
+            item["end_time"] = ""
+
+        try:
+            item["pub_time"] = ul.xpath("./li[7]/text()").extract_first()
+            # 发布时间为昨天之前的直接跳过,发布定时任务后开启
+            # if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
+            #     return
+        except Exception as e:
+            item["pub_time"] = ""
+
         try:
             item["pro_price"] = ul.xpath("./li[1]/text()").extract_first()
         except Exception as e:
@@ -117,17 +133,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
         except Exception as e:
             item["pub_address"] = ""
 
-        try:
-            item["end_time"] = ul.xpath("./li[6]/text()").extract_first()
-        except Exception as e:
-            item["end_time"] = ""
-
-        try:
-            item["pub_time"] = ul.xpath("./li[7]/text()").extract_first()
-        except Exception as e:
-            item["pub_time"] = ""
-
-        # 拼接采购需求
+        # 拼接需求
         if min_order_num is not "" and min_order_num is not None :
             item["sup_description"] = "起订："+ min_order_num+"。"
         else :
@@ -136,7 +142,9 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
         if send_date is not  "" and send_date is not None:
             item["sup_description"] = item["sup_description"]+"发货期限：自买家付款之日起"+send_date+"天内发货。"
 
+        item['sup_type'] = "供应"
+
         # 构造传递给pipeline的数据结构
-        result_map = {"result_item": item, "type": response.meta["type"]}
+        result_map = {"result_item": item}
 
         yield result_map

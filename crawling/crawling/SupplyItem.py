@@ -29,4 +29,5 @@ class SupplyItem(scrapy.Item):
     sup_description = scrapy.Field()  # 供应描述
     info_from = scrapy.Field()  # 供应信息来源
     user_token = scrapy.Field()  # 发布用户
+    type = scrapy.Field()
     pass
