@@ -1,2 +1,4 @@
-.idea
+.idea/
 crawling/crawling/spiders/log.log
+crawling/crawling/__pycache__/
+crawling/crawling/spiders/__pycache__/

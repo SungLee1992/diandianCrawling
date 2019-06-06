@@ -1,9 +1,6 @@
 import scrapy
 import logging
 import re
-import datetime
-from copy import deepcopy
-
 from crawling.ArticleItem import ArticleItem
 
 logger = logging.getLogger(__name__)  # "__name"可以取到当前文件名Sxnynct_Pur_Spider.py
@@ -41,34 +38,28 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
                 callback=self.parse
             )
 
-    
-
-    
     """
     解析文章内容
     """
     def parse_article(self, response):
         item = ArticleItem()
-
         dr = re.compile(r'<[^>]+>',re.S)
-        detail = response.xpath("//div[@class='TRS_Editor']").extract_first()
+
         source = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-office']/text()").extract_first()
         if not source.strip():
             source = ''
-        art_detail = dr.sub('',detail)
-            
-        item['art_title'] = response.xpath("//div[@class='news_title_big']/text()").extract_first()
-        item['art_detail'] = art_detail
-
-        # item['art_detail'] = response.xpath("//div[@class='TRS_Editor']").extract_first()
-        #item['art_content'] = response.xpath("//div[@class='TRS_Editor']//p[1]/descendant::text()").extract_first()
-
-        item['art_date'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-no'][1]/text()").extract_first()
-        # item['art_source'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-office']/text()").extract_first()
         item['art_source'] = source
-        item['art_category'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-subject']/text()").extract_first()
 
         #处理item['detail'](文章正文)
+        detail = response.xpath("//div[@class='TRS_Editor']").extract_first()
+        art_detail = dr.sub('',detail)
+        item['art_detail'] = art_detail
+
+
+        item['art_title'] = response.xpath("//div[@class='news_title_big']/text()").extract_first()
+        item['art_date'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-no'][1]/text()").extract_first()
+        item['art_category'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-subject']/text()").extract_first()
+
         result_map = {"result_item": item}
 
         yield result_map
