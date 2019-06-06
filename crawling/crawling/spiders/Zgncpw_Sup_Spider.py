@@ -64,7 +64,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
                 )
     #
         # 翻页
-        page_count = 5  # 最多爬n页
+        page_count = 20  # 最多爬n页
         cur_page_str = response.xpath("//div[@class='pages']/strong/text()").extract_first()
         if cur_page_str is not None :
             cur_page = int(cur_page_str.strip())  # 取当前页页码

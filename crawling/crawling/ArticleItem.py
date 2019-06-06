@@ -15,4 +15,5 @@ class ArticleItem(scrapy.Item):
     art_content = scrapy.Field()  # 概述
     art_category = scrapy.Field()  # 文章分类
     tech_category = scrapy.Field()  # 技术文章分类
+    art_appendix = scrapy.Field()   #附件
     pass

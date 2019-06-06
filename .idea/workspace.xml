@@ -4,12 +4,14 @@
     <bookmark url="file://$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py" line="34" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6ef2ec3-7240-4ca0-b811-c178f2f3b0d2" name="Default Changelist" comment="现有部分（逻辑、数据库）优化完成">
+    <list default="true" id="f6ef2ec3-7240-4ca0-b811-c178f2f3b0d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/crawling/crawling/spiders/Zcfg_Article_Spider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/crawling/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_SupAndPur_Spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_SupAndPur_Spider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/crawling/spiders/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/spiders/log.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crawling/log.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawling/crawling/ArticleItem.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/ArticleItem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawling/crawling/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawling/crawling/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Sup_Spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Sup_Spider.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,34 +38,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crawling/crawling/pipelines.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="160" column="40" selection-start-line="160" selection-start-column="40" selection-end-line="160" selection-end-column="40" />
+            <state relative-caret-position="858">
+              <caret line="168" column="1" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
               <folding>
                 <element signature="e#291#305#0" expanded="true" />
                 <element signature="e#675#702#0" />
-                <element signature="e#4526#4547#0" />
+                <element signature="e#4687#5897#0" />
+                <element signature="e#4687#4708#0" />
+                <element signature="e#6687#7618#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py">
+        <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Zcfg_Article_Spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1386">
-              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Sup_Spider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2024">
-              <caret line="92" column="32" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+            <state>
+              <caret line="66" column="71" selection-start-line="66" selection-start-column="71" selection-end-line="66" selection-end-column="71" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -72,10 +64,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_SupAndPur_Spider.py">
+        <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/log.log">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crawling/crawling/ArticleItem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+            <state relative-caret-position="264">
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -83,17 +80,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crawling/crawling/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1093">
-              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+            <state relative-caret-position="404">
+              <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crawling/crawling/SupplyItem.py">
+        <entry file="file://$PROJECT_DIR$/crawling/crawling/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="19" />
+            <state relative-caret-position="251">
+              <caret line="128" column="27" selection-start-line="128" selection-start-column="6" selection-end-line="128" selection-end-column="27" />
+              <folding>
+                <element signature="e#170#240#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,11 +121,15 @@
       <find>logger</find>
       <find>pro_name</find>
       <find>int</find>
-      <find>sup_description</find>
       <find>sup_</find>
-      <find>user</find>
       <find>end</find>
+      <find>user</find>
+      <find>4</find>
+      <find>sup_description</find>
+      <find>AGENT</find>
+      <find>DownLoader</find>
       <find>print</find>
+      <find>response.url</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,15 +152,22 @@
         <option value="$PROJECT_DIR$/crawling/crawling/doc.html" />
         <option value="$PROJECT_DIR$/crawling/crawling/items.py" />
         <option value="$PROJECT_DIR$/crawling/crawling/no_supply.py" />
-        <option value="$PROJECT_DIR$/crawling/crawling/spiders/log.log" />
-        <option value="$PROJECT_DIR$/crawling/crawling/settings.py" />
         <option value="$PROJECT_DIR$/crawling/crawling/PurchaseItem.py" />
         <option value="$PROJECT_DIR$/crawling/crawling/SupplyItem.py" />
         <option value="$PROJECT_DIR$/crawling/crawling/test.py" />
-        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py" />
-        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Sup_Spider.py" />
-        <option value="$PROJECT_DIR$/crawling/crawling/pipelines.py" />
         <option value="$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_SupAndPur_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Sup_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_Article_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_Stwj_Article_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_Nyfg_Article_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/pipelines.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Nyfg_Article_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/ArticleItem.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/middlewares.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/settings.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/Zcfg_Article_Spider.py" />
+        <option value="$PROJECT_DIR$/crawling/crawling/spiders/log.log" />
       </list>
     </option>
   </component>
@@ -214,13 +225,13 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/crawling/crawling/spiders/log.log" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/crawling/crawling" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/crawling/crawling/spiders" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Code\workspace\Pyspace\diandianCrawling\crawling\crawling" />
       <recent name="D:\Code\workspace\Pyspace\diandianCrawling\crawling\crawling\spiders" />
+      <recent name="D:\Code\workspace\Pyspace\diandianCrawling\crawling\crawling" />
       <recent name="D:\Code\workspace\Pyspace\diandianCrawling\参考文档" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -397,11 +408,32 @@
       <option name="project" value="LOCAL" />
       <updated>1559646336107</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="现有部分（逻辑、数据库）优化完成">
+      <created>1559646424605</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1559646424605</updated>
+    </task>
+    <task id="LOCAL-00008" summary="增加中国农产品网供应部分产品名称的处理（注释掉了，暂时没采用，并不完全合适）">
+      <created>1559655375294</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1559655375294</updated>
+    </task>
+    <task id="LOCAL-00009" summary="陕西农业厅，省厅文件爬虫，需去掉文章内容的html标签">
+      <created>1559803541878</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1559803541879</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134561000" />
+    <option name="totallyTimeSpent" value="171274000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -430,8 +462,8 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3207127" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2457356" side_tool="true" weight="0.33296213" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.7542644" visible="true" weight="0.29064587" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2457356" side_tool="true" weight="0.32182628" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.7542644" visible="true" weight="0.32182628" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32962137" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -460,7 +492,9 @@
     <MESSAGE value="增加中国农产品网爬虫（求购部分），暂未完成" />
     <MESSAGE value="增加中国农产品网爬虫，求购部分完成" />
     <MESSAGE value="现有部分（逻辑、数据库）优化完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="现有部分（逻辑、数据库）优化完成" />
+    <MESSAGE value="增加中国农产品网供应部分产品名称的处理（注释掉了，暂时没采用，并不完全合适）" />
+    <MESSAGE value="陕西农业厅，省厅文件爬虫，需去掉文章内容的html标签" />
+    <option name="LAST_COMMIT_MESSAGE" value="陕西农业厅，省厅文件爬虫，需去掉文章内容的html标签" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/diandianCrawling$example.coverage" NAME="example Coverage Results" MODIFIED="1558077749744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/crawling/crawling/spiders" />
@@ -569,9 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/crawling/middlewares.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawling/crawling/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -624,9 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/log.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/crawling/crawling/PurchaseItem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-38">
@@ -643,15 +671,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crawling/crawling/SupplyItem.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
+        <state relative-caret-position="345">
           <caret line="28" column="19" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Sup_Spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2024">
-          <caret line="92" column="32" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
+        <state relative-caret-position="22">
+          <caret line="68" column="37" lean-forward="true" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -660,39 +688,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Zgncpw_Pur_Spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1386">
-          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+        <state relative-caret-position="310">
+          <caret line="115" column="24" selection-start-line="113" selection-start-column="8" selection-end-line="115" selection-end-column="24" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/crawling/settings.py">
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_Stwj_Article_Spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1093">
-          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+        <state relative-caret-position="545">
+          <caret line="49" column="73" selection-start-line="49" selection-start-column="73" selection-end-line="49" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crawling/crawling/pipelines.py">
+    <entry file="file://$PROJECT_DIR$/../../../Python3/Lib/site-packages/scrapy/downloadermiddlewares/useragent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="160" column="40" selection-start-line="160" selection-start-column="40" selection-end-line="160" selection-end-column="40" />
+        <state relative-caret-position="264">
+          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/ArticleItem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/middlewares.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="128" column="27" selection-start-line="128" selection-start-column="6" selection-end-line="128" selection-end-column="27" />
           <folding>
-            <element signature="e#291#305#0" expanded="true" />
-            <element signature="e#675#702#0" />
-            <element signature="e#4526#4547#0" />
+            <element signature="e#170#240#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Sxnynct_SupAndPur_Spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="506">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="168" column="1" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
+          <folding>
+            <element signature="e#291#305#0" expanded="true" />
+            <element signature="e#675#702#0" />
+            <element signature="e#4687#5897#0" />
+            <element signature="e#4687#4708#0" />
+            <element signature="e#6687#7618#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/Zcfg_Article_Spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="66" column="71" selection-start-line="66" selection-start-column="71" selection-end-line="66" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crawling/crawling/spiders/log.log">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

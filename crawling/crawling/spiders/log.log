@@ -1,0 +1,3 @@
+2019-06-06 21:24:20 [crawling.pipelines] ERROR: (1406, "Data too long for column 'art_detail' at row 1")
+2019-06-06 21:24:30 [scrapy.core.downloader.handlers.http11] WARNING: Got data loss in http://www.zgncpw.com/buy/list-18535-3.html. If you want to process broken responses set the setting DOWNLOAD_FAIL_ON_DATALOSS = False -- This message won't be shown in further requests
+2019-06-06 21:24:30 [scrapy.core.downloader.handlers.http11] WARNING: Got data loss in http://www.zgncpw.com/buy/show-16806.html. If you want to process broken responses set the setting DOWNLOAD_FAIL_ON_DATALOSS = False -- This message won't be shown in further requests
