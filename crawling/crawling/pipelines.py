@@ -174,19 +174,19 @@ class Sxnynct_SupAndPur_Pipeline(object):
 
 
 # 中国农产品网供应爬虫
-class Zgncpw_Pur_Pipeline(object):
+# class Zgncpw_Pur_Pipeline(object):
     
-    def process_item(self, item, spider):
+#     def process_item(self, item, spider):
 
-        db = pymysql.connect('localhost','root','123456','bangnong')
-        cursor = db.cursor()
-        sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
+#         db = pymysql.connect('localhost','root','123456','bangnong')
+#         cursor = db.cursor()
+#         sql = 'INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
 
-        # data = (data_item['pub_title']+"", data_item['sup_variety']+"", data_item['end_time']+"",'',data_item['sup_phone']+"",data_item['sup_user']+"", '陕西省农村信息站监管系统', data_item['type'])
+#         # data = (data_item['pub_title']+"", data_item['sup_variety']+"", data_item['end_time']+"",'',data_item['sup_phone']+"",data_item['sup_user']+"", '陕西省农村信息站监管系统', data_item['type'])
 
-        item['sql'] = sql
-        item['data'] = data
-        return item
+#         item['sql'] = sql
+#         item['data'] = data
+#         return item
 
 
 # 中国农产品网供需信息处理
@@ -208,10 +208,13 @@ class Article_Pipeline(object):
     def process_item(self, item, spider):
         if spider.name == "Sxnynct_Stwj_Article_Spider":
             data_item = item['result_item']
+
             sql = 'INSERT INTO article_copy (art_title,art_date,art_source,art_detail,art_content,art_category,tech_category) VALUES ("%s","%s","%s","%s","%s","%s","%s")'
 
-            data = (data_item['art_title'] + "", data_item['art_date'] + "", data_item['art_source'] + "",
-                    data_item['art_detail'] + "", '', data_item['art_category'],'')
+            # data = (data_item['art_title'] + "", data_item['art_date'] + "", data_item['art_source'] + "",
+            #         data_item['art_detail'] + "", '', data_item['art_category'],'')
+            data = (data_item['art_title'], data_item['art_date'], data_item['art_source'],
+                    data_item['art_detail'], '', data_item['art_category'],'')
 
             item['sql'] = sql
             item['data'] = data
