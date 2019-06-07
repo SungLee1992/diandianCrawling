@@ -64,7 +64,7 @@ class Zgncpw_SupAndPur_Pipeline(object):
 class Article_Pipeline(object):
 
     def process_item(self, item, spider):
-        if spider.name == "Sxnynct_Stwj_Article_Spider":
+        if spider.name == "Sxnynct_Stwj_Article_Spider" or spider.name == "Zcfg_Article_Spider":
             data_item = item['result_item']
 
             sql = 'INSERT INTO article_copy (art_title,art_date,art_source,art_detail,art_content,art_category,tech_category) VALUES ("%s","%s","%s","%s","%s","%s","%s")'
