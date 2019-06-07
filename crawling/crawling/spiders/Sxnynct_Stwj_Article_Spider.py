@@ -43,7 +43,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
     """
     def parse_article(self, response):
         item = ArticleItem()
-        dr = re.compile(r'<[^>]+>',re.S)
+        re_text = re.compile(r'<[^>]+>',re.S)
 
         source = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-office']/text()").extract_first()
         if not source.strip():
@@ -52,7 +52,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
 
         #处理item['detail'](文章正文)
         detail = response.xpath("//div[@class='TRS_Editor']").extract_first()
-        art_detail = dr.sub('',detail)
+        art_detail = re_text.sub('',detail)
         item['art_detail'] = art_detail
 
 
@@ -61,6 +61,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
         item['art_category'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-subject']/text()").extract_first()
 
         result_map = {"result_item": item}
+        print(item)
 
         yield result_map
         

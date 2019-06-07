@@ -3,6 +3,8 @@ import logging
 import re
 import datetime
 from copy import deepcopy
+from bs4 import BeautifulSoup
+
 
 from crawling.ArticleItem import ArticleItem
 
@@ -14,8 +16,8 @@ class Zcfg_Article_Spider(scrapy.Spider):
     allowed_domains = ['www.moa.gov.cn']  # 允许爬的范围(allowed_domains写法很重要# )
     start_urls = ['http://www.moa.gov.cn/gk']  # 最开始请求的url地址
 
-    #zcfg_dict = {'fl': "法律", 'xzfg': "行政法规", 'nybgz': "规范性文件", 'qnhnzc': "政策"}
-    #zcfg_dict = {'fl': "法律"}
+    zcfg_dict = {'fl': "法律", 'xzfg': "行政法规", 'nybgz': "规范性文件", 'qnhnzc': "政策"}
+    # zcfg_dict = {'fl': "法律"}
     nszd_dict = {'2019': "2019年农事指导", '2018': "2018年农事指导",'2017nszd':"2017农事指导"}
 
     """
@@ -54,8 +56,8 @@ class Zcfg_Article_Spider(scrapy.Spider):
         li_list = response.xpath("//div[@class='pub-media1-txt-list fullwidth']//ul[@id='div']/li")
         item = response.meta["item"]
         for li in li_list:
-            item['art_title'] = li.xpath("./a/text()").extract_first()
-            item['art_date'] = li.xpath("./span/text()").extract_first()
+            item['art_title'] = li.xpath("./a/text()").extract_first().strip()
+            item['art_date'] = li.xpath("./span/text()").extract_first().strip()
 
             # 发布时间为昨天之前的直接跳过，发布后开启
             # if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
@@ -93,10 +95,23 @@ class Zcfg_Article_Spider(scrapy.Spider):
 
     def parse_detail(self, response):
         item = response.meta["item"]
+        re_text = re.compile(r'<[^>]+>',re.S)#去除标签，保留文字正则表达式
+        re_style = re.compile('<s*style[^>]*>[^<]*<s*/s*styles*>',re.I)#删除style标签正则表达式
+
+        
         # TODO 这里处理正文（该xpath勿改！）
-        item['art_detail'] = response.xpath("//div[@class='arc_body mg_auto w_855 pd_b_35']").extract_first()
-        if item['art_detail'] is None:
+        # item['art_detail'] = response.xpath("//div[@class='arc_body mg_auto w_855 pd_b_35']").extract_first()
+        # if item['art_detail'] is None:
+        #     return
+
+        detail = response.xpath("//div[@class='arc_body mg_auto w_855 pd_b_35']").extract_first()
+        delete_style_detail = re_style.sub('',detail)
+        
+        if detail is None:
             return
+
+        art_detail = re_text.sub('',delete_style_detail)
+        item['art_detail'] = art_detail
 
         #附件
         item['art_appendix'] = response.xpath("//span[@class='xiangqing_fujian']/a/@href").extract_first()
@@ -118,10 +133,11 @@ class Zcfg_Article_Spider(scrapy.Spider):
         # if source is not None:
         #     item['art_source'] = source
 
-        print(item)
+        # print(item)
+
 
         result_map = {"result_item": item}
-        # yield result_map
+        yield result_map
         pass
 
 
