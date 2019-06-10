@@ -11739,3 +11739,18 @@ Traceback (most recent call last):
   File "D:\Documents\Desktop\git\diandianbangnong\diandianCrawling\crawling\crawling\spiders\Sxnynct_Stwj_Article_Spider.py", line 68, in parse_article
     if not source.strip():
 AttributeError: 'NoneType' object has no attribute 'strip'
+2019-06-10 18:14:19 [scrapy.core.scraper] ERROR: Spider error processing <GET http://nyt.shaanxi.gov.cn//www/snytqtwj4471/20170929/9630139.html> (referer: http://nyt.shaanxi.gov.cn/www/stwj1187/index_5.html)
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\utils\defer.py", line 102, in iter_errback
+    yield next(it)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 339, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "D:\Documents\Desktop\git\diandianbangnong\diandianCrawling\crawling\crawling\spiders\Sxnynct_Stwj_Article_Spider.py", line 61, in parse_article
+    if not source.strip():
+AttributeError: 'NoneType' object has no attribute 'strip'
