@@ -3,7 +3,6 @@ import logging
 import re
 import datetime
 from copy import deepcopy
-from bs4 import BeautifulSoup
 
 
 from crawling.ArticleItem import ArticleItem
@@ -114,11 +113,11 @@ class Zcfg_Article_Spider(scrapy.Spider):
         item['art_detail'] = art_detail
 
         #附件
-        item['art_appendix'] = response.xpath("//span[@class='xiangqing_fujian']/a/@href").extract_first()
-        if item['art_appendix'] is not None :
-            item['art_appendix'] = item['art_appendix'].lstrip(".")
-        if item['art_appendix'] is not None:
-            item['art_appendix'] = response.url[0:response.url.rfind('/', 1)]+item['art_appendix']
+        art_appendix = response.xpath("//span[@class='xiangqing_fujian']/a/@href").extract_first()
+        if art_appendix is not None :
+            art_appendix = art_appendix.lstrip(".")
+        if art_appendix is not None:
+            item['art_appendix'] = response.url[0:response.url.rfind('/', 1)]+art_appendix
 
         #来源
         item['art_source'] = "中华人民共和国农业农村部"
