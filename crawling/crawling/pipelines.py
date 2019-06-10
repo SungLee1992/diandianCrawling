@@ -67,7 +67,7 @@ class Article_Pipeline(object):
         if spider.name == "Sxnynct_Stwj_Article_Spider" or spider.name == "Zcfg_Article_Spider":
             data_item = item['result_item']
 
-            sql = 'INSERT INTO article_copy (art_title,art_date,art_source,art_detail,art_content,art_category,tech_category,art_appendix) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
+            sql = 'INSERT INTO article (art_title,art_date,art_source,art_detail,art_content,art_category,tech_category,art_appendix) VALUES ("%s","%s","%s","%s","%s","%s","%s","%s")'
 
             data = (data_item['art_title'], data_item['art_date'], data_item['art_source'],
                     data_item['art_detail'], '', data_item['art_category'],'',data_item['art_appendix'])

@@ -20,7 +20,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
         a_list = response.xpath("//div[@class='mltalbe']//table//tr/td[2]/a")
         for a in a_list:
             article_url = "http://nyt.shaanxi.gov.cn/"+a.xpath("./@href").extract_first()
-            print("当前文章URL："+article_url)
+            # print("当前文章URL："+article_url)
             yield scrapy.Request(
                 article_url,
                 callback=self.parse_article
@@ -29,10 +29,10 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
         # 翻页
         page_count = 12
         cur_page = int(response.xpath("//li[@class='active']/a/text()").extract_first())+1
-        print("当前页："+str(cur_page))
+        # print("当前页："+str(cur_page))
         if cur_page in range(1, page_count):
             next_page_url = "http://nyt.shaanxi.gov.cn/www/stwj1187/index_{}.html".format(cur_page)
-            print("下一页："+next_page_url)
+            # print("下一页："+next_page_url)
             yield scrapy.Request(
                 next_page_url,
                 callback=self.parse
@@ -43,8 +43,20 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
     """
     def parse_article(self, response):
         item = ArticleItem()
+
         re_text = re.compile(r'<[^>]+>',re.S)
 
+        #附件
+        item['art_appendix'] = ""
+        art_appendix = response.xpath("//div[2]//div//div[2]//a//@href").extract_first()
+        # if art_appendix is not None :
+        #     art_appendix = art_appendix.lstrip(".")
+        if art_appendix is not None:
+            if art_appendix.startswith('/'):
+                item['art_appendix'] = response.url[0:response.url.find('/', 7)]+art_appendix
+            else:
+                item['art_appendix'] = art_appendix
+        
         source = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-office']/text()").extract_first()
         if not source.strip():
             source = ''
@@ -61,7 +73,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
         item['art_category'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-subject']/text()").extract_first()
 
         result_map = {"result_item": item}
-        print(item)
+        # print(item)
 
         yield result_map
         

@@ -113,6 +113,7 @@ class Zcfg_Article_Spider(scrapy.Spider):
         item['art_detail'] = art_detail
 
         #附件
+        item['art_appendix'] = ""
         art_appendix = response.xpath("//span[@class='xiangqing_fujian']/a/@href").extract_first()
         if art_appendix is not None :
             art_appendix = art_appendix.lstrip(".")
