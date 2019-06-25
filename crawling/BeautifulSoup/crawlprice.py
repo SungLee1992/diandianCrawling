@@ -36,7 +36,7 @@ class Save_DB:
         # cursor = db.cursor()
         conn = self.conn
         cursor = conn.cursor()
-        sql = 'INSERT INTO price_information_copy (pro_name,price,unit,address,pub_time) VALUES ("%s","%s","%s","%s","%s")'
+        sql = 'INSERT INTO price_information_copy (pro_name,price,unit,address,pub_time,price_from) VALUES ("%s","%s","%s","%s","%s","%s")'
         try:
             cursor.executemany(sql,dataList)
             print('write success: '+ str(size))
@@ -146,7 +146,7 @@ def save_price_instance():
         instanceItem = item.split(',')
         price_unit = instanceItem[1].split('/')
         # priceItemEntity = PriceItemEntity(instanceItem[0],price_unit[0],price_unit[1],instanceItem[2],instanceItem[3])
-        insertList.append((instanceItem[0],price_unit[0],price_unit[1],instanceItem[2],instanceItem[3]))
+        insertList.append((instanceItem[0],price_unit[0],price_unit[1],instanceItem[2],instanceItem[3],"陕西省农产品价格行情监测平台"))
         count += 1
     sd = Save_DB()
     sd.save_data(insertList)

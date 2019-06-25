@@ -1,3 +1,5 @@
+import datetime
+
 import scrapy
 import logging
 import re
@@ -27,7 +29,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
             )
 
         # 翻页
-        page_count = 12
+        page_count = 3
         cur_page = int(response.xpath("//li[@class='active']/a/text()").extract_first())+1
         # print("当前页："+str(cur_page))
         if cur_page in range(1, page_count):
@@ -43,6 +45,13 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
     """
     def parse_article(self, response):
         item = ArticleItem()
+        item['art_date'] = response.xpath(
+            "//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-no'][1]/text()").extract_first()
+        # 发布时间为昨天之前的直接跳过，发布后开启
+        if datetime.datetime.strptime("item['art_date']",
+                                      "%Y-%m-%d %H:%M:%S") < datetime.datetime.now() - datetime.timedelta(
+                days=1):
+            return
 
         re_text = re.compile(r'<[^>]+>',re.S)
 
@@ -69,7 +78,6 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
 
 
         item['art_title'] = response.xpath("//div[@class='news_title_big']/text()").extract_first()
-        item['art_date'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-no'][1]/text()").extract_first()
         item['art_category'] = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-subject']/text()").extract_first()
 
         result_map = {"result_item": item}
