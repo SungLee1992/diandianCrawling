@@ -11754,3 +11754,255 @@ Traceback (most recent call last):
   File "D:\Documents\Desktop\git\diandianbangnong\diandianCrawling\crawling\crawling\spiders\Sxnynct_Stwj_Article_Spider.py", line 61, in parse_article
     if not source.strip():
 AttributeError: 'NoneType' object has no attribute 'strip'
+2019-06-17 11:13:30 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:13:30 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:13:30 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:16:00 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:16:00 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:16:01 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:17:38 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:17:38 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:17:38 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:18:29 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:18:29 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:18:29 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:18:49 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:18:49 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:18:50 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:30:50 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:30:50 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:30:50 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:31:17 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-17 11:31:17 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-17 11:31:17 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:01:53 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-19 22:01:53 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:01:53 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:03:31 [py.warnings] WARNING: c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\spidermiddlewares\offsite.py:61: URLWarning: allowed_domains accepts only domains, not URLs. Ignoring URL entry http://sxs_jgt.54.site.veeteam.com in allowed_domains.
+  warnings.warn(message, URLWarning)
+
+2019-06-19 22:03:31 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:03:31 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:05:56 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:05:56 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:09:27 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:11:22 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:11:22 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:16:48 [twisted] CRITICAL: Unhandled error in Deferred:
+2019-06-19 22:16:48 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\twisted\internet\defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\crawler.py", line 80, in crawl
+    self.engine = self._create_engine()
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\crawler.py", line 105, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\engine.py", line 70, in __init__
+    self.scraper = Scraper(crawler)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\scraper.py", line 71, in __init__
+    self.itemproc = itemproc_cls.from_crawler(crawler)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\middleware.py", line 53, in from_crawler
+    return cls.from_settings(crawler.settings, crawler)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\middleware.py", line 34, in from_settings
+    mwcls = load_object(clspath)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\utils\misc.py", line 44, in load_object
+    mod = import_module(module)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\importlib\__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 724, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 860, in get_code
+  File "<frozen importlib._bootstrap_external>", line 791, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\Documents\Desktop\git\diandianbangnong\diandianCrawling\crawling\crawling\pipelines.py", line 95
+    # return item
+                ^
+SyntaxError: unexpected EOF while parsing
+2019-06-19 22:17:13 [twisted] CRITICAL: Unhandled error in Deferred:
+2019-06-19 22:17:13 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\utils\misc.py", line 47, in load_object
+    obj = getattr(mod, name)
+AttributeError: module 'crawling.pipelines' has no attribute 'Sxnynct_Price_Pipeline'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\twisted\internet\defer.py", line 1418, in _inlineCallbacks
+    result = g.send(result)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\crawler.py", line 80, in crawl
+    self.engine = self._create_engine()
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\crawler.py", line 105, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\engine.py", line 70, in __init__
+    self.scraper = Scraper(crawler)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\scraper.py", line 71, in __init__
+    self.itemproc = itemproc_cls.from_crawler(crawler)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\middleware.py", line 53, in from_crawler
+    return cls.from_settings(crawler.settings, crawler)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\middleware.py", line 34, in from_settings
+    mwcls = load_object(clspath)
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\utils\misc.py", line 49, in load_object
+    raise NameError("Module '%s' doesn't define any object named '%s'" % (module, name))
+NameError: Module 'crawling.pipelines' doesn't define any object named 'Sxnynct_Price_Pipeline'
+2019-06-19 22:19:21 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:19:21 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:24:48 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:24:48 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:27:46 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:27:46 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:33:06 [scrapy.downloadermiddlewares.robotstxt] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/robots.txt>: invalid hostname: sxs_jgt.54.site.veeteam.com
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:33:06 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:34:34 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com
+2019-06-19 22:36:17 [scrapy.core.scraper] ERROR: Error downloading <GET http://sxs_jgt.54.site.veeteam.com/index.php/home/day/index/p/1.html>
+Traceback (most recent call last):
+  File "c:\users\严修灏\appdata\local\programs\python\python37\lib\site-packages\scrapy\core\downloader\middleware.py", line 43, in process_request
+    defer.returnValue((yield download_func(request=request,spider=spider)))
+ValueError: invalid hostname: sxs_jgt.54.site.veeteam.com

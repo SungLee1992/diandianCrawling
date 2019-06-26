@@ -57,7 +57,9 @@ MY_USER_AGENT = [
     ]
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+#false by xiuhao
+ROBOTSTXT_OBEY = False
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -112,6 +114,7 @@ ITEM_PIPELINES = {
    'crawling.pipelines.Sxnynct_SupAndPur_Pipeline':300,   #值表示距离引擎的远近,值越小，表示距离pipeline的引擎跃进
    'crawling.pipelines.Zgncpw_SupAndPur_Pipeline':300,
    'crawling.pipelines.Article_Pipeline':300,
+   'crawling.pipelines.Sxnynct_Price_Pipeline':300
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

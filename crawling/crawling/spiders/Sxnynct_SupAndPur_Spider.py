@@ -131,5 +131,6 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
 
 
         result_map = {"result_item": item}
-        yield result_map
+        print(item)
+        # yield result_map
         

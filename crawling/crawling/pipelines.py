@@ -77,3 +77,19 @@ class Article_Pipeline(object):
             item['sql'] = sql
             item['data'] = data
         return item
+
+#陕西农业农村厅价格信息处理
+class Sxnynct_Price_Pipeline(object):
+
+    def process_item(self, item, spider):
+        if spider.name == "Sxnynct_Price_Pipeline":
+            sql = '''INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);'''
+            data_item = item['result_item']
+            print(data_item['type'] + "-" * 20)
+            data = (data_item['pub_title'], data_item['sup_variety'], data_item['end_time'], '', data_item['sup_phone'],
+                    data_item['sup_user'], '陕西省农业农村部', data_item['type'])
+
+            item['sql'] = sql
+            item['data'] = data
+
+        return item

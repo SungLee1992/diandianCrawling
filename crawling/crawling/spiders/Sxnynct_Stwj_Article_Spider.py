@@ -11,6 +11,8 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
     allowed_domains = ['nyt.shaanxi.gov.cn']  # 允许爬的范围
     start_urls = ['http://nyt.shaanxi.gov.cn/www/stwj1187/index.html']  # 最开始请求的url地址
 
+    price_item_list = []
+
     """
     大类分解
     """

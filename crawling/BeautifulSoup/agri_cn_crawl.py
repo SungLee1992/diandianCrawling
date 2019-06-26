@@ -6,6 +6,7 @@ import pymysql
 import re
 import random
 from lxml import etree
+import datetime
 
 
 
@@ -28,55 +29,23 @@ def set_request_head():
     
 
 
-#--------get page amount----------
+#--------手动设置爬取几页数据----------
 
-def get_page_amount():
-    ua_headers = set_request_head()
-    print(ua_headers)
-    requestUrl = 'http://www.agri.cn/kj/syjs/jgjs/'
-    req = requests.get(requestUrl,headers = ua_headers)
-    # request = urllib2.Request(requestUrl, headers = ua_headers)
-    # response = urllib2.urlopen(request)
-    # html = response.read()
-    # print(type(html))
-
-
-    req.encoding = 'utf-8'
-    # print(req.text)
-    # root = etree.HTML(req.content)
-    # pageCount = root.xpath('//*[@id="pageBar1"]')
-    # print(pageCount)
-    # pageCount = req.xpath('//*[@id="pageBar1"]')
-    # print(pageCount)
-    html = req.text
-    html_bf = BeautifulSoup(html)
-    pageBar = html_bf.find('div',id='pageBar')
-    print(pageBar.get_text())
-    
-    # pages = []
-
-    # for string in pageContainer.strings:
-    #     pages.append(repr(string))
-    # amount = pages[-1]
-    # return (int(amount[1:-1])+1)
-
-
-#--------set page amount----------
-
-def set_download_urls():
+def set_download_urls(baseUrl):
     downloadUrls = []
-    baseUrl = 'http://www.agri.cn/kj/syjs/jgjs/'
-    downloadUrls.append('http://www.agri.cn/kj/syjs/jgjs/index.htm')
-    for i in range(1,60):
+    # baseUrl = 'http://www.agri.cn/kj/syjs/jgjs/'
+    # downloadUrls.append('http://www.agri.cn/kj/syjs/jgjs/index.htm')
+    downloadUrls.append(baseUrl)
+    for i in range(1,5):
         url = baseUrl + 'index_' + str(i) + '.htm'
         downloadUrls.append(url)
     return downloadUrls
 
 
-#--------get download page urls
+#--------获取文章列表所在的table------
 
-def get_download_tables():
-    downloadUrls = set_download_urls()
+def get_download_tables(baseUrl):
+    downloadUrls = set_download_urls(baseUrl)
     ua_headers = set_request_head()
     tables = []
     for url in downloadUrls:
@@ -88,29 +57,40 @@ def get_download_tables():
 
     return tables
 
-#---------get article links------------
-def get_download_url():
-    downloadTables = get_download_tables()
-    articles = []
+#---------获取每个table中每条文章所在的table ------------
+def get_news_item(baseUrl):
+    downloadTables = get_download_tables(baseUrl)
+    newsItem = []
     for each in downloadTables:
-        articles.append(each.find_all('a',class_='link03'))
+        newsItem.append(each.find_all('table',width=480))
+    return newsItem
+
+#---------选取发布时间在规定范围内的文章------------
+def get_download_url(baseUrl):
+    newsItem = get_news_item(baseUrl)
+    articles = []
+    for each in newsItem:
+        for item in each:
+            if item.find('td',class_='hui_14') is not None:
+                pubTime = item.find('td',class_='hui_14').get_text()[1:-2]
+                if datetime.datetime.strptime(pubTime,"%Y-%m-%d") > datetime.datetime.now()-datetime.timedelta(days=2):
+                    articles.append(item.find('a',class_='link03'))
     return articles
 
-def read_article_info():
-    articles = get_download_url()
-    baseUrl = 'http://www.agri.cn/kj/syjs/jgjs'
+#------------解析文章的url--------------
+def read_article_info(baseUrl):
+    articles = get_download_url(baseUrl)
+    # baseUrl = 'http://www.agri.cn/kj/syjs/jgjs'
     dict = {}
-
     for each in articles:
-        for item in each:
-            dict[item.string] = baseUrl + item.get('href')[1:]
+        dict[each.string] = baseUrl + each.get('href')[1:]
     return dict
 
 
-#---------method of save to MySQL-----------
+#---------保存数据到MySQL-----------
 
 def save_mysql(title,date,source,detail,tech_category):
-    db = pymysql.connect('localhost','root','123456','bangnong')
+    db = pymysql.connect('localhost','root','123456','bangnong',use_unicode=True,charset='utf8')
 
     cursor = db.cursor()
 
@@ -128,9 +108,9 @@ def save_mysql(title,date,source,detail,tech_category):
     db.close()
 
 
-#---------get content info and save ---------------
+#---------根据Url读取文章内容并保存到数据库 ---------------
 
-def get_content(title,url):
+def get_content(title,url,tech_category):
     ua_headers = set_request_head()
     print(title + '---->' + url)
 
@@ -154,24 +134,26 @@ def get_content(title,url):
         text += "\n"
 
     #print(text)
-    save_mysql(title,date,source,text,2)
+    save_mysql(title,date,source,text,tech_category)
         
 
-#--------save all article -----------
+#--------保存数据-----------
 
-def save_data():
-    dict = read_article_info()
+def save_data(baseUrl,tech_category):
+    dict = read_article_info(baseUrl)
     for key,value in dict.items():
-        get_content(key,value)
+        get_content(key,value,tech_category)
+
+
+#--------爬虫入口-----------
+def crawl_data():
+    baseUrls = ['http://www.agri.cn/kj/syjs/zzjs/','http://www.agri.cn/kj/syjs/yzjs/','http://www.agri.cn/kj/syjs/jgjs/']
+    # startUrls = [] 
+    for baseUrl in baseUrls:
+        save_data(baseUrl,baseUrls.index(baseUrl))
     
 
-save_data()
-# get_page_amount()
 
+    
 
-
-
-
-
-
-#get_content('油菜防寒防冻及灾后恢复措施','http://www.agri.cn/kj/syjs/zzjs/201812/t20181218_6305013.htm')
+crawl_data()
