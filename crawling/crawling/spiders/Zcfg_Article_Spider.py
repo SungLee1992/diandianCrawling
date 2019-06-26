@@ -59,8 +59,8 @@ class Zcfg_Article_Spider(scrapy.Spider):
             item['art_date'] = li.xpath("./span/text()").extract_first().strip()
 
             # 发布时间为昨天之前的直接跳过，发布后开启
-            # if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
-            #     return
+            if datetime.datetime.strptime(item['art_date'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
+                return
 
             detail_url = li.xpath("a/@href").extract_first().lstrip("./")  # 取详情页链接
             # 文章详细页URL解析

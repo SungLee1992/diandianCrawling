@@ -66,8 +66,8 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
             item['pub_time'] = li.xpath("span[@class='r']/text()").extract_first().strip("[]")
 
             # 发布时间为昨天之前的直接跳过，发布后开启
-            # if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
-            #     return
+            if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
+                return
 
             detail_url = li.xpath(".//a/@href").extract_first()  # 取详情页链接
             # url不为空，则请求详细页
@@ -81,7 +81,7 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
                 )
 
         # 翻页
-        page_count = 10      #最多爬n页
+        page_count = 4      #最多爬n页
         cur_page = int(response.xpath("//div[@id='AspNetPager1']/span/text()").extract_first().strip())  # 取当前页页码
         if cur_page in range(page_count):
             # 翻页列表页解析
@@ -117,9 +117,9 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
         sup_user = result[result.rfind('联系人：')+4:result.rfind('联系电话：')]
         sup_phone = result[result.rfind('联系电话：')+5:result.rfind('有效期：')]
         end_time = result[result.rfind('有效期：')+4:result.rfind('地址：')]
-        #截止日期已到时直接退出
-        # if datetime.datetime.strptime(end_time,"%Y-%m-%d")<datetime.datetime.now():
-        #     return
+        # 截止日期已到时直接退出
+        if datetime.datetime.strptime(end_time,"%Y-%m-%d")<datetime.datetime.now():
+            return
         sup_address = result[result.rfind('地址：')+3:result.rfind('邮箱：')]
 
 

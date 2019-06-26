@@ -64,7 +64,7 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
                 )
     #
         # 翻页
-        page_count = 20  # 最多爬n页
+        page_count = 3  # 最多爬n页
         cur_page_str = response.xpath("//div[@class='pages']/strong/text()").extract_first()
         if cur_page_str is not None :
             cur_page = int(cur_page_str.strip())  # 取当前页页码
@@ -96,16 +96,16 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
         try:
             item["end_time"] = ul.xpath("./li[6]/text()").extract_first()
             # 截止日期已到时直接退出
-            # if datetime.datetime.strptime(item["end_time"],"%Y-%m-%d") < datetime.datetime.now():
-            #     return
+            if datetime.datetime.strptime(item["end_time"],"%Y-%m-%d") < datetime.datetime.now():
+                return
         except Exception as e:
-            item["end_time"] = ""
+            pass
 
         try:
             item["pub_time"] = ul.xpath("./li[7]/text()").extract_first()
             # 发布时间为昨天之前的直接跳过,发布定时任务后开启
-            # if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
-            #     return
+            if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d %H:%M") < datetime.datetime.now()-datetime.timedelta(days=1):
+                return
         except Exception as e:
             item["pub_time"] = ""
 
