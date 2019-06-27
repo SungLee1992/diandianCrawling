@@ -1,0 +1,10 @@
+﻿在Windows系统下，应注意：
+1、生成.egg文件时，使用命令：
+python C:\Users\严修灏\AppData\Local\Programs\Python\Python37\Scripts\scrapyd-deploy(scrapyd-deploy所在目录) target -p projectname，而不是编辑scrapyd-deployt文件，使用scrapyd-deploy --build-egg output.egg命令
+
+2、手动选择twisted的版本为18.9.0： pip install Twisted==18.9.0
+
+3、scrapy爬取网站的域名不能带下划线(_)
+
+4、BeautifulSoup中爬虫的执行方法：
+	cd到BeautifulSoup中，执行 python ***.py
