@@ -114,7 +114,7 @@ def save_mysql(title,date,source,detail,tech_category):
 
     cursor = db.cursor()
 
-    sql = 'INSERT INTO article_copy (art_title,art_date,art_source,art_detail,tech_category) VALUES ("%s","%s","%s","%s",%s)' % (title,date,source,detail,tech_category)
+    sql = 'INSERT INTO article (art_title,art_date,art_source,art_detail,tech_category) VALUES ("%s","%s","%s","%s",%s)' % (title,date,source,detail,tech_category)
 
     try:
         cursor.execute(sql)

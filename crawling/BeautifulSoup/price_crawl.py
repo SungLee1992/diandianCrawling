@@ -36,7 +36,7 @@ class Save_DB:
         # cursor = db.cursor()
         conn = self.conn
         cursor = conn.cursor()
-        sql = 'INSERT INTO price_information_copy (pro_name,price,unit,address,pub_time,price_from) VALUES ("%s","%s","%s","%s","%s","%s")'
+        sql = 'INSERT INTO price_information (pro_name,price,unit,address,pub_time,price_from) VALUES ("%s","%s","%s","%s","%s","%s")'
         try:
             cursor.executemany(sql,dataList)
             print('write success: '+ str(size))
