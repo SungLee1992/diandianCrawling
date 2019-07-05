@@ -73,7 +73,7 @@ def get_download_url(baseUrl):
         for item in each:
             if item.find('td',class_='hui_14') is not None:
                 pubTime = item.find('td',class_='hui_14').get_text()[1:-2]
-                if datetime.datetime.strptime(pubTime,"%Y-%m-%d") > datetime.datetime.now()-datetime.timedelta(days=2):
+                if datetime.datetime.strptime(pubTime,"%Y-%m-%d") > datetime.datetime.now()-datetime.timedelta(days=1):
                     articles.append(item.find('a',class_='link03'))
     return articles
 
