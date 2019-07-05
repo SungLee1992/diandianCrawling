@@ -154,7 +154,7 @@ def get_content(title,url):
         text += "\n"
 
     #print(text)
-    save_mysql(title,date,source,text,0)
+    save_mysql(title,date,source,text,"种植技术")
         
 
 #--------save all article -----------

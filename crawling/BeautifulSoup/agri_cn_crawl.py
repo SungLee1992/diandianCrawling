@@ -26,7 +26,7 @@ def set_request_head():
         'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36'
     }
     return ua_header
-    
+
 
 
 #--------手动设置爬取几页数据----------
@@ -94,9 +94,10 @@ def save_mysql(title,date,source,detail,tech_category):
 
     cursor = db.cursor()
 
-    sql = 'INSERT INTO article (art_title,art_date,art_source,art_detail,tech_category) VALUES ("%s","%s","%s","%s",%s)' % (title,date,source,detail,tech_category)
+    sql = 'INSERT INTO article (art_title,art_date,art_source,art_detail,art_category,tech_category) VALUES ("%s","%s","%s","%s","%s","%s")' % (title,date,source,detail,"实用技术",tech_category)
 
     try:
+        print(sql)
         cursor.execute(sql)
         db.commit()
         print("write success")
@@ -104,7 +105,7 @@ def save_mysql(title,date,source,detail,tech_category):
         db.rollback()
         print("write fail")
         print(e)
-    
+
     db.close()
 
 
@@ -135,7 +136,7 @@ def get_content(title,url,tech_category):
 
     #print(text)
     save_mysql(title,date,source,text,tech_category)
-        
+
 
 #--------保存数据-----------
 
@@ -148,12 +149,14 @@ def save_data(baseUrl,tech_category):
 #--------爬虫入口-----------
 def crawl_data():
     baseUrls = ['http://www.agri.cn/kj/syjs/zzjs/','http://www.agri.cn/kj/syjs/yzjs/','http://www.agri.cn/kj/syjs/jgjs/']
-    # startUrls = [] 
+    # startUrls = []
     for baseUrl in baseUrls:
-        save_data(baseUrl,baseUrls.index(baseUrl))
-    
+        if baseUrl.__contains__("zzjs"):
+            save_data(baseUrl,"种植技术")
+        if baseUrl.__contains__("yzjs"):
+            save_data(baseUrl, "养殖技术")
+        if baseUrl.__contains__("jgjs"):
+            save_data(baseUrl, "加工技术")
 
-
-    
 
 crawl_data()

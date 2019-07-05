@@ -49,8 +49,9 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
         item = ArticleItem()
         item['art_date'] = response.xpath(
             "//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-no'][1]/text()").extract_first()
+        print(item['art_date'])
         # 发布时间为昨天之前的直接跳过，发布后开启
-        if datetime.datetime.strptime("item['art_date']",
+        if datetime.datetime.strptime(item['art_date'],
                                       "%Y-%m-%d %H:%M:%S") < datetime.datetime.now() - datetime.timedelta(
                 days=1):
             return

@@ -117,6 +117,7 @@ def save_mysql(title,date,source,detail,tech_category):
     sql = 'INSERT INTO article (art_title,art_date,art_source,art_detail,tech_category) VALUES ("%s","%s","%s","%s",%s)' % (title,date,source,detail,tech_category)
 
     try:
+        print(sql)
         cursor.execute(sql)
         db.commit()
         print("write success")
@@ -154,7 +155,7 @@ def get_content(title,url):
         text += "\n"
 
     #print(text)
-    save_mysql(title,date,source,text,1)
+    save_mysql(title,date,source,text,"养殖技术")
         
 
 #--------save all article -----------
