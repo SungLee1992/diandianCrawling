@@ -93,3 +93,8 @@ class Sxnynct_Price_Pipeline(object):
             item['data'] = data
 
         return item
+
+
+class Gys_Price_Pipeline(object):
+    def process_item(self,item,spider):
+        pass
