@@ -38,27 +38,34 @@ class Gys_Price_Spider(scrapy.Spider):
 
 
         # 翻页
-        page_count = int(re.findall('createPageHTML\((.), ., "list", "html"\)', response.body.decode("UTF-8"))[0])
+        # page_count = int(re.findall('createPageHTML\((.), ., "list", "html"\)', response.body.decode("UTF-8"))[0])
+        # print("page_count:"+str(page_count))
         # cur_page = int(re.findall('createPageHTML\(., (.), "list", "html"\)', response.body.decode("UTF-8"))[0])
-        for cur_page in range(1,page_count):
-            next_page = "http://www.nxgy.gov.cn/zwgk/zfxxgkml/nygjcjgxgg/list_{}.html".format(cur_page)
-            print(next_page)
-            yield scrapy.Request(
-                next_page,
-                callback=self.parse,
-                meta={"item": deepcopy(item)}
-            )
-            cur_page+=1
+        # print("cur_page:"+str(cur_page))
+        # if cur_page in range(0,page_count):
+        #     next_page = "http://www.nxgy.gov.cn/zwgk/zfxxgkml/nygjcjgxgg/list_{}.html".format(cur_page+1)
+        #     print(next_page)
+        #     yield scrapy.Request(
+        #         next_page,
+        #         callback=self.parse,
+        #         meta={"item": deepcopy(item)}
+        #     )
 
     """
     价格信息详细页的解析
     """
 
     def parse_detail(self, response):
-        all_tr = response.xpath("//div[@class='ue_table']//tr").extract_first()
+        all_tr = response.xpath("//div[@class='ue_table']//tr")
         if all_tr is not None:
             print(len(all_tr))
+            for index in range(0, len(all_tr)):
+                pro_name = all_tr[index].xpath(".//td[1]//span/text()").extract_first()
+                if pro_name is None:
+                    continue
+                if "、" in pro_name:
+                    continue
+                print(pro_name.strip(" ")+","+str(len(pro_name.strip("\t"))))
 
-        # for row in range(3,len(all_tr)):
-        #     print()
+
         pass
