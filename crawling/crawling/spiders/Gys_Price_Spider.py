@@ -1,3 +1,5 @@
+import datetime
+
 import scrapy
 import logging
 import re
@@ -19,19 +21,24 @@ class Gys_Price_Spider(scrapy.Spider):
 
     def parse(self, response):
         print("#"*20)
-        item = GysPriceItem()
+        # now_month = datetime.datetime.now().month
+        now_year = 2019
+        now_month = 5
+        #item = GysPriceItem()
         ul_list = response.xpath("//div[@class='xxgk_wrap']//ul")
         for ul in ul_list:
             title = ul.xpath(".//li[@class='w383']/a/text()").extract_first()
-            if "农畜产品" in title :
-                item['pub_time'] = ul.xpath(".//li[@class='w100']/span/text()").extract_first()
-                # TODO 当月爬当月？还是，如果发布月份与当前月份同一个月则爬
-
+            pub_time = ul.xpath(".//li[@class='w100']/span/text()").extract_first()
+            pub_month = datetime.datetime.strptime(pub_time, "%Y-%m-%d").month
+            pub_year = datetime.datetime.strptime(pub_time, "%Y-%m-%d").year
+            # 只爬当月数据
+            # if ("农畜产品" in title) and (pub_month == now_month) and (pub_year == now_year):
+            if "农畜产品" in title:
                 price_info_url = "http://www.nxgy.gov.cn/zwgk/zfxxgkml/nygjcjgxgg/"+ul.xpath(".//li[@class='w383']/a/@href").extract_first().lstrip("./")
                 yield scrapy.Request(
                     price_info_url,
                     callback=self.parse_detail,
-                    meta={"item": item}
+                    meta={"pub_time": pub_time}
                 )
             else :
                 continue
@@ -58,14 +65,49 @@ class Gys_Price_Spider(scrapy.Spider):
     def parse_detail(self, response):
         all_tr = response.xpath("//div[@class='ue_table']//tr")
         if all_tr is not None:
-            print(len(all_tr))
-            for index in range(0, len(all_tr)):
-                pro_name = all_tr[index].xpath(".//td[1]//span/text()").extract_first()
-                if pro_name is None:
-                    continue
-                if "、" in pro_name:
-                    continue
-                print(pro_name.strip(" ")+","+str(len(pro_name.strip("\t"))))
+            for index in range(3, len(all_tr)):
+                # 第一组品种
+                # 处理品种名
+                # pro_name = all_tr[index].xpath(".//td[1]//span/text()").extract_first()
+                # if (pro_name is None) or ("品 种" in pro_name) or ("填" in pro_name):
+                #     continue
+                # pro_name = ''.join(pro_name.split())
+                # if "、" in pro_name:
+                #     category = pro_name.split("、")[1]
+                #     pro_name = pro_name.split("、")[1]
+                #
+                # # 处理原州区价格、隆德县价格、均价
+                # yzq_price = all_tr[index].xpath(".//td[3]//span/text()").extract_first()
+                # if yzq_price is None:
+                #     yzq_price = ""
+                # ldx_price = all_tr[index].xpath(".//td[4]//span/text()").extract_first()
+                # if ldx_price is None:
+                #     ldx_price = ""
+                # avg_price = all_tr[index].xpath(".//td[5]//span/text()").extract_first()
+                # if avg_price is None:
+                #     avg_price = ""
+                # print(pro_name+","+category+","+yzq_price+","+ldx_price+","+avg_price)
 
+                # 第二组品种
+                # 处理品种名
+                pro_name = all_tr[index].xpath(".//td[6]//span/text()").extract_first()
+                if (pro_name is None) or ("品种" in pro_name) or ("填" in pro_name):
+                    continue
+                pro_name = ''.join(pro_name.split())
+                if "、" in pro_name:
+                    category = pro_name.split("、")[1]
+                    pro_name = pro_name.split("、")[1]
+
+                # 处理原州区价格、隆德县价格、均价
+                yzq_price = all_tr[index].xpath(".//td[8]//span/text()").extract_first()
+                if yzq_price is None:
+                    yzq_price = ""
+                ldx_price = all_tr[index].xpath(".//td[9]//span/text()").extract_first()
+                if ldx_price is None:
+                    ldx_price = ""
+                avg_price = all_tr[index].xpath(".//td[10]//span/text()").extract_first()
+                if avg_price is None:
+                    avg_price = ""
+                print(pro_name + "," + category + "," + yzq_price + "," + ldx_price + "," + avg_price)
 
         pass
