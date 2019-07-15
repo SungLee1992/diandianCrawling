@@ -114,7 +114,6 @@ ITEM_PIPELINES = {
    'crawling.pipelines.Sxnynct_SupAndPur_Pipeline':300,   #值表示距离引擎的远近,值越小，表示距离pipeline的引擎跃进
    'crawling.pipelines.Zgncpw_SupAndPur_Pipeline':300,
    'crawling.pipelines.Article_Pipeline':300,
-   'crawling.pipelines.Sxnynct_Price_Pipeline':300,
    'crawling.pipelines.Gys_Price_Pipeline':300
 }
 

@@ -21,8 +21,10 @@ class DB_Pipeline(object):
         db = pymysql.connect('localhost', 'root', '123456', 'bangnong')
         cursor = db.cursor()
         try:
-            cursor.execute(item['sql'], item['data'])
-            print(item['data'][1] + 'write success')
+            if spider.name == "Gys_Price_Spider":
+                cursor.executemany(item['sql'],item['data'])
+            else:
+                cursor.execute(item['sql'], item['data'])
         except Exception as e:
             db.rollback()
             logger.error(e)
@@ -41,7 +43,7 @@ class Sxnynct_SupAndPur_Pipeline(object):
             data_item = item['result_item']
             print(data_item['type'] + "-" * 20)
             data = (data_item['pub_title'], data_item['sup_variety'], data_item['end_time'], '', data_item['sup_phone'],
-                    data_item['sup_user'], '陕西省农业农村部', data_item['type'])
+                    data_item['sup_user'], '陕西省农业农村厅', data_item['type'])
 
             item['sql'] = sql
             item['data'] = data
@@ -78,23 +80,14 @@ class Article_Pipeline(object):
             item['data'] = data
         return item
 
-#陕西农业农村厅价格信息处理
-class Sxnynct_Price_Pipeline(object):
-
-    def process_item(self, item, spider):
-        if spider.name == "Sxnynct_Price_Pipeline":
-            sql = '''INSERT INTO no_supply (pro_name,sup_variety,sup_validity,sup_num,sup_phone,sup_user,sup_origin,sup_type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);'''
-            data_item = item['result_item']
-            print(data_item['type'] + "-" * 20)
-            data = (data_item['pub_title'], data_item['sup_variety'], data_item['end_time'], '', data_item['sup_phone'],
-                    data_item['sup_user'], '陕西省农业农村部', data_item['type'])
+# 固原市价格信息处理
+class Gys_Price_Pipeline(object):
+    def process_item(self,item,spider):
+        if spider.name == "Gys_Price_Spider":
+            sql = '''INSERT INTO gys_price (pro_name,category,pro_unit,yzq_price,ldx_price,avg_price,pub_time,price_from) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);'''
+            data = item['result_item']
 
             item['sql'] = sql
             item['data'] = data
 
         return item
-
-
-class Gys_Price_Pipeline(object):
-    def process_item(self,item,spider):
-        pass

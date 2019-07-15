@@ -37,8 +37,8 @@ class Zgncpw_Pur_Spider(scrapy.Spider):
         for li in li_list:
             item['pub_time'] = li.xpath("./span[4]/text()").extract_first()
             # 发布时间为昨天之前的直接跳过
-            if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
-                return
+            if item['pub_time'] is None or datetime.datetime.now().date()-datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d").date() > datetime.timedelta(days=1):
+                continue
             item['pub_title'] = li.xpath("./span[1]/text()").extract_first()
             item['pub_address'] = li.xpath("./span[2]/text()").extract_first()
             item['sup_user'] = li.xpath("./span[3]/text()").extract_first()

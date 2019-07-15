@@ -13,17 +13,19 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
     allowed_domains = ['nyt.shaanxi.gov.cn']  # 允许爬的范围
     start_urls = ['http://nyt.shaanxi.gov.cn/www/stwj1187/index.html']  # 最开始请求的url地址
 
-    price_item_list = []
-
     """
     大类分解
     """
 
     def parse(self, response):
 
-        a_list = response.xpath("//div[@class='mltalbe']//table//tr/td[2]/a")
-        for a in a_list:
-            article_url = "http://nyt.shaanxi.gov.cn/"+a.xpath("./@href").extract_first()
+        tr_list = response.xpath("//div[@class='mltalbe']//table//tr")
+        for tr in tr_list:
+            pub_time = tr.xpath("./td[5]/text()").extract_first()
+            # 发文时间在一天之前的直接跳过
+            if pub_time is None or datetime.datetime.now().date() - datetime.datetime.strptime(pub_time,"%Y-%m-%d").date() > datetime.timedelta(days=1):
+                continue
+            article_url = "http://nyt.shaanxi.gov.cn/"+tr.xpath("./td[2]/a/@href").extract_first()
             # print("当前文章URL："+article_url)
             yield scrapy.Request(
                 article_url,
@@ -50,12 +52,6 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
         item['art_date'] = response.xpath(
             "//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-no'][1]/text()").extract_first()
         print(item['art_date'])
-        # 发布时间为昨天之前的直接跳过，发布后开启
-        if datetime.datetime.strptime(item['art_date'],
-                                      "%Y-%m-%d %H:%M:%S") < datetime.datetime.now() - datetime.timedelta(
-                days=30):
-            return
-
         re_text = re.compile(r'<[^>]+>',re.S)
 
         #附件
@@ -68,7 +64,7 @@ class Sxnynct_Stwj_Article_Spider(scrapy.Spider):
                 item['art_appendix'] = response.url[0:response.url.find('/', 7)]+art_appendix
             else:
                 item['art_appendix'] = art_appendix
-        
+
         source = response.xpath("//ul[@class='govinfo-lay-detail']//li[@class='govinfo-lay-office']/text()").extract_first()
         if not source.strip():
             source = ''

@@ -102,14 +102,6 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
             pass
 
         try:
-            item["pub_time"] = ul.xpath("./li[7]/text()").extract_first()
-            # 发布时间为昨天之前的直接跳过,发布定时任务后开启
-            if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d %H:%M") < datetime.datetime.now()-datetime.timedelta(days=1):
-                return
-        except Exception as e:
-            item["pub_time"] = ""
-
-        try:
             item["pro_price"] = ul.xpath("./li[1]/text()").extract_first()
         except Exception as e:
             item["pro_price"] = ""
@@ -145,8 +137,14 @@ class Zgncpw_Sup_Spider(scrapy.Spider):
 
         item['sup_type'] = "供应"
 
-        # 构造传递给pipeline的数据结构
-        result_map = {"result_item": item}
-
-        # print(result_map)
-        yield result_map
+        try:
+            item["pub_time"] = ul.xpath("./li[7]/text()").extract_first()
+            # 发布时间为昨天之后的进行解析,发布定时任务后开启
+            if datetime.datetime.now().date() - datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d %H:%M").date() <= datetime.timedelta(days=1):
+                # 构造传递给pipeline的数据结构
+                result_map = {"result_item": item}
+                yield result_map
+        except Exception as e:
+            item["pub_time"] = ""
+            result_map = {"result_item": item}
+            yield result_map

@@ -21,19 +21,17 @@ class Gys_Price_Spider(scrapy.Spider):
 
     def parse(self, response):
         print("#"*20)
-        # now_year = datetime.datetime.now().year
-        # now_month = datetime.datetime.now().month
-        now_year = 2019
-        now_month = 3
+        now_year = datetime.datetime.now().year
+        now_month = datetime.datetime.now().month
         ul_list = response.xpath("//div[@class='xxgk_wrap']//ul")
         for ul in ul_list:
             title = ul.xpath(".//li[@class='w383']/a/text()").extract_first()
             pub_time = ul.xpath(".//li[@class='w100']/span/text()").extract_first()
-            pub_month = datetime.datetime.strptime(pub_time, "%Y-%m-%d").month
             pub_year = datetime.datetime.strptime(pub_time, "%Y-%m-%d").year
+            pub_month = datetime.datetime.strptime(pub_time, "%Y-%m-%d").month
             # 只爬当月数据
-            #if ("农畜产品" in title) and (pub_month == now_month) and (pub_year == now_year):
-            if ("农畜产品" in title) and (pub_year >= 2019):
+            if ("农畜产品" in title) and (pub_month == now_month) and (pub_year == now_year):
+            #if ("农畜产品" in title) and (pub_year >= now_year):   #先爬今年的数据
                 price_info_url = "http://www.nxgy.gov.cn/zwgk/zfxxgkml/nygjcjgxgg/"+ul.xpath(".//li[@class='w383']/a/@href").extract_first().lstrip("./")
                 yield scrapy.Request(
                     price_info_url,
@@ -63,9 +61,8 @@ class Gys_Price_Spider(scrapy.Spider):
 
     def parse_detail(self, response):
         all_tr = response.xpath("//div[@class='ue_table']//tr")
-        item = GysPriceItem()
+        items = []
         if all_tr is not None:
-            items = []
             for index in range(1, len(all_tr)):
                 # 第一组品种
                 # 处理品种名
@@ -87,15 +84,7 @@ class Gys_Price_Spider(scrapy.Spider):
                 if avg_price is None:
                     avg_price = ""
 
-                item['pro_name'] = pro_name
-                item['category'] = category
-                item['pro_unit'] = "元/公斤"
-                item['yzq_price'] = yzq_price.strip()
-                item['ldx_price'] = ldx_price.strip()
-                item['avg_price'] = avg_price.strip()
-                item['pub_time'] = response.meta["pub_time"]
-                item['price_from'] = "固原市农业农村局"
-
+                item = (pro_name,category,"元/公斤",yzq_price.strip(),ldx_price.strip(),avg_price.strip(),response.meta["pub_time"],"固原市农业农村局")
                 items.append(deepcopy(item))
 
             for index in range(1,len(all_tr)):
@@ -123,19 +112,12 @@ class Gys_Price_Spider(scrapy.Spider):
                 if avg_price is None:
                     avg_price = ""
 
-                item['pro_name'] = pro_name
-                item['category'] = category
-                item['pro_unit'] = "元/公斤"
-                item['yzq_price'] = yzq_price.strip()
-                item['ldx_price'] = ldx_price.strip()
-                item['avg_price'] = avg_price.strip()
-                item['pub_time'] = response.meta["pub_time"]
-                item['price_from'] = "固原市农业农村局"
-
+                item = (pro_name, category, "元/公斤", yzq_price.strip(), ldx_price.strip(), avg_price.strip(),
+                        response.meta["pub_time"], "固原市农业农村局")
                 items.append(deepcopy(item))
 
             if len(items) !=0 :
-                fp = open("./result.txt",'a+')
-                fp.write(str(items))
-                #print(items)
-        pass
+                # fp = open("./result.txt", 'a+')
+                # fp.write(str(tuple(items)))
+                result_map = {"result_item": items}
+                yield result_map

@@ -66,8 +66,8 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
             item['pub_time'] = li.xpath("span[@class='r']/text()").extract_first().strip("[]")
 
             # 发布时间为昨天之前的直接跳过，发布后开启
-            if datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
-                return
+            if  item['pub_time'] is None or datetime.datetime.now().date()-datetime.datetime.strptime(item['pub_time'],"%Y-%m-%d").date() > datetime.timedelta(days=1) :
+                continue
 
             detail_url = li.xpath(".//a/@href").extract_first()  # 取详情页链接
             # url不为空，则请求详细页
@@ -118,19 +118,18 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
         sup_phone = result[result.rfind('联系电话：')+5:result.rfind('有效期：')]
         end_time = result[result.rfind('有效期：')+4:result.rfind('地址：')]
         # 截止日期已到时直接退出
-        if datetime.datetime.strptime(end_time,"%Y-%m-%d")<datetime.datetime.now():
-            return
-        sup_address = result[result.rfind('地址：')+3:result.rfind('邮箱：')]
+        if datetime.datetime.strptime(end_time,"%Y-%m-%d")>=datetime.datetime.now():
+            sup_address = result[result.rfind('地址：')+3:result.rfind('邮箱：')]
 
 
-        item['sup_description'] = sup_description
-        item['sup_user'] = sup_user
-        item['sup_phone'] = sup_phone
-        item['end_time'] = end_time
-        item['sup_address'] = sup_address
+            item['sup_description'] = sup_description
+            item['sup_user'] = sup_user
+            item['sup_phone'] = sup_phone
+            item['end_time'] = end_time
+            item['sup_address'] = sup_address
 
 
-        result_map = {"result_item": item}
-        print(item)
-        # yield result_map
-        
+            result_map = {"result_item": item}
+            print(item)
+            yield result_map
+        pass

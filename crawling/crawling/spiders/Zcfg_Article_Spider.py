@@ -16,8 +16,8 @@ class Zcfg_Article_Spider(scrapy.Spider):
     start_urls = ['http://www.moa.gov.cn/gk']  # 最开始请求的url地址
 
     zcfg_dict = {'fl': "法律", 'xzfg': "行政法规", 'nybgz': "规范性文件", 'qnhnzc': "政策"}
-    # zcfg_dict = {'fl': "法律"}
-    nszd_dict = {'2019': "2019年农事指导", '2018': "2018年农事指导",'2017nszd':"2017农事指导"}
+    #nszd_dict = {'2019': "2019年农事指导", '2018': "2018年农事指导",'2017nszd':"2017农事指导"}
+    tzgg_dict = {'bl': "部令", 'gg': "公告",'tz':"通知","tfw":"其他"}
 
     """
        大类分解
@@ -34,9 +34,30 @@ class Zcfg_Article_Spider(scrapy.Spider):
                 meta={"item": deepcopy(item),"cur_category_url":cur_category_url}
             )
 
-        for key in self.nszd_dict:
-            cur_category_url = self.start_urls[0] + "/nszd_1/{}".format(key)  # 农事指导大类的url
-            item['art_category'] = self.nszd_dict[key]
+        # 农事指导按年递增，发布后开启
+        now_year = str(datetime.datetime.now().year)
+        cur_category_url = self.start_urls[0] + "/nszd_1/{}".format(now_year)  # 农事指导大类的url
+        item['art_category'] = now_year+"年农事指导"
+        print(item)
+        yield scrapy.Request(
+            cur_category_url,
+            callback=self.parse_category,
+            meta={"item": deepcopy(item),"cur_category_url":cur_category_url}
+        )
+        #爬取2017年以后的农事指导
+        # for key in self.nszd_dict:
+        #     cur_category_url = self.start_urls[0] + "/nszd_1/{}".format(key)  # 农事指导大类的url
+        #     item['art_category'] = self.nszd_dict[key]
+        #     print(item)
+        #     yield scrapy.Request(
+        #         cur_category_url,
+        #         callback=self.parse_category,
+        #         meta={"item": deepcopy(item),"cur_category_url":cur_category_url}
+        #     )
+
+        for key in self.tzgg_dict:
+            cur_category_url = self.start_urls[0] + "/tzgg_1/{}".format(key)  # 农事指导大类的url
+            item['art_category'] = self.tzgg_dict[key]
             print(item)
             yield scrapy.Request(
                 cur_category_url,
@@ -59,8 +80,8 @@ class Zcfg_Article_Spider(scrapy.Spider):
             item['art_date'] = li.xpath("./span/text()").extract_first().strip()
 
             # 发布时间为昨天之前的直接跳过，发布后开启
-            if datetime.datetime.strptime(item['art_date'],"%Y-%m-%d") < datetime.datetime.now()-datetime.timedelta(days=1):
-                return
+            if item['art_date'] is None or datetime.datetime.now().date()-datetime.datetime.strptime(item['art_date'],"%Y-%m-%d").date() > datetime.timedelta(days=1):
+                continue
 
             detail_url = li.xpath("a/@href").extract_first().lstrip("./")  # 取详情页链接
             # 文章详细页URL解析
