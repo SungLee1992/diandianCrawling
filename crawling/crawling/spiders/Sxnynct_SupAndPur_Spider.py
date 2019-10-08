@@ -112,24 +112,24 @@ class Sxnynct_Pur_Spider(scrapy.Spider):
             if str:
                 result += str
         # print(result)
-        
-        sup_description = result[0:result.find('联系人：')]
-        sup_user = result[result.rfind('联系人：')+4:result.rfind('联系电话：')]
-        sup_phone = result[result.rfind('联系电话：')+5:result.rfind('有效期：')]
-        end_time = result[result.rfind('有效期：')+4:result.rfind('地址：')]
-        # 截止日期已到时直接退出
-        if datetime.datetime.strptime(end_time,"%Y-%m-%d")>=datetime.datetime.now():
-            sup_address = result[result.rfind('地址：')+3:result.rfind('邮箱：')]
 
+        # 只记录有联系方式的数据
+        sup_phone = result[result.rfind('联系电话：') + 5:result.rfind('有效期：')]
+        if (sup_phone is not None) or (sup_phone is not ""):
+            sup_description = result[0:result.find('联系人：')]
+            sup_user = result[result.rfind('联系人：') + 4:result.rfind('联系电话：')]
+            end_time = result[result.rfind('有效期：')+4:result.rfind('地址：')]
+            # 截止日期已到时直接退出
+            if datetime.datetime.strptime(end_time,"%Y-%m-%d")>=datetime.datetime.now():
+                sup_address = result[result.rfind('地址：')+3:result.rfind('邮箱：')]
 
-            item['sup_description'] = sup_description
-            item['sup_user'] = sup_user
-            item['sup_phone'] = sup_phone
-            item['end_time'] = end_time
-            item['sup_address'] = sup_address
+                item['sup_description'] = sup_description
+                item['sup_user'] = sup_user
+                item['sup_phone'] = sup_phone
+                item['end_time'] = end_time
+                item['sup_address'] = sup_address
 
-
-            result_map = {"result_item": item}
-            print(item)
-            yield result_map
+                result_map = {"result_item": item}
+                print(item)
+                yield result_map
         pass
