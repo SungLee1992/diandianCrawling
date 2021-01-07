@@ -1,5 +1,5 @@
 PyMySQL==0.9.3
 requests==2.22.0
-lxml==4.3.3
+lxml==4.6.2
 Scrapy==1.6.0
 beautifulsoup4==4.7.1
